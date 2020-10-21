@@ -11,8 +11,8 @@
             <div
                     [dir]="textDir"
                     [ngClass]="{
-          user__container: primaryLang !== secondaryLang,
-          user_container_single_form: primaryLang === secondaryLang
+          user__container: primaryLang !== primaryLang,
+          user_container_single_form: primaryLang === primaryLang
         }"
                     *ngIf="primaryuserForm"
             >
