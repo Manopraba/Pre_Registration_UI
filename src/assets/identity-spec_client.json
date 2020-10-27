@@ -1,0 +1,1105 @@
+[
+  {
+    "id": "IDSchemaVersion",
+    "description": "ID Schema Version 1.0",
+    "label": {
+      "primary": "ID Schema Version 1.0"
+    },
+    "type": "number",
+    "minimum": 0,
+    "controlType": null,
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "evidence",
+    "inputRequired": false,
+    "validators": [],
+    "bioAttributes": null,
+    "requiredOn": [],
+    "subType": "IdSchemaVersion",
+    "contactType": null,
+    "group": null,
+    "required": true
+  },
+
+  {
+    "id":"registrationType",
+    "description":"Registration Type",
+    "label":{
+      "primary":"Registration Type"
+    },
+    "type":"simpleType",
+    "controlType":"dropdown",
+    "fieldType":"dynamic",
+    "format":"none",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "requiredOn":[],
+    "subType":"RegistrationType",
+    "required":true
+  },
+  {
+    "id":"supportingDocCategory1",
+    "description":"Type of Supporting Document 1",
+    "label":{
+      "primary":"Type of Supporting Document"
+    },
+    "type":"simpleType",
+    "controlType":"dropdown",
+    "fieldType":"default",
+    "format":"",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument1",
+    "group":"SupportingDocument1",
+    "required":true
+  },
+  {
+    "id":"supportingDocNumber1",
+    "description":"Number of Supporting Document 1",
+    "label":{
+      "primary":"Document Number"
+    },
+    "type":"simpleType",
+    "controlType":"text",
+    "fieldType":"default",
+    "format":"uppercased",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument1",
+    "group":"SupportingDocuments",
+    "required":true
+  },
+
+/*WERWE*/
+  {
+    "id":"supportingDoc1",
+    "description":"Supporting Document 1",
+    "label":{
+      "primary":"Supporting Document"
+    },
+    "type":"documentType",
+    "controlType":"fileupload",
+    "fieldType":"default",
+    "format":"none",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument1",
+    "group":"SupportingDocuments",
+    "required":true
+  },
+  {
+    "id":"supportingDocCategory2",
+    "description":"Type of Supporting Document 2",
+    "label":{
+      "primary":"Type of Supporting Document"
+    },
+    "type":"simpleType",
+    "controlType":"dropdown",
+    "fieldType":"default",
+    "format":"",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument2",
+    "group":"SupportingDocuments",
+    "required":true
+  },
+  {
+    "id":"supportingDocNumber2",
+    "description":"Number of Supporting Document 2",
+    "label":{
+      "primary":"Document Number"
+    },
+    "type":"simpleType",
+    "controlType":"text",
+    "fieldType":"default",
+    "format":"uppercased",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument2",
+    "group":"SupportingDocuments",
+    "required":true
+  },
+
+  {
+    "id":"supportingDoc2",
+    "description":"Supporting Document 2",
+    "label":{
+      "primary":"Supporting Document"
+    },
+    "type":"documentType",
+    "controlType":"fileupload",
+    "fieldType":"default",
+    "format":"none",
+    "fieldCategory":"evidence",
+    "inputRequired":true,
+    "validators":[],
+    "bioAttributes":null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType":"supportingDocument2",
+    "group":"SupportingDocuments",
+    "required":true
+  },
+  {
+    "id": "guardianType",
+    "description": "Type of Guardian",
+    "label": {
+      "primary": "Type of Guardian"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "dynamic",
+    "format": "none",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianType",
+    "group": "Guardian",
+    "required": true
+  },
+  {
+
+    "id": "guardianFirstName",
+    "description": "First Name of Guardian",
+    "label": {
+      "primary": "First Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianFirstName",
+    "group": "Guardian",
+    "required": false
+  },
+  {
+    "id": "guardianMiddleName",
+    "description": "Middle Name of Guardian",
+    "label": {
+      "primary": "Middle Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianMiddleName",
+    "group": "Guardian",
+    "required": false
+  },
+  {
+    "id": "guardianLastName",
+    "description": "Last Name of Guardian",
+    "label": {
+      "primary": "Last Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianLastName",
+    "group": "Guardian",
+    "required": false
+  },
+  {
+    "id": "guardianSuffix",
+    "description": "Suffix of Guardian",
+    "label": {
+      "primary": "Suffix"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianLastName",
+    "group": "Guardian",
+    "required": false
+  },
+  {
+    "id": "guardianCredentialID",
+    "description": "Credential ID of Guardian. This will hold the PCN/PSN/Registration ID of the guardian.",
+    "label": {
+      "primary": "Credential ID"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='DOCUMENT-BASED'"
+      }
+    ],
+    "subType": "guardianCredentialID",
+    "group": "Guardian",
+    "required": false
+  },
+  {
+
+  "id": "guardianBiometrics",
+  "description": "Biometrics of Guardian",
+  "label": {
+  "primary": "Biometrics"
+},
+  "fieldCategory": "evidence",
+  "format": "none",
+  "fieldType": "dynamic",
+  "type": "biometricsType",
+  "inputRequired": true,
+  "bioAttributes": [
+  "leftEye",
+  "rightEye",
+  "rightIndex",
+  "rightLittle",
+  "rightRing",
+  "rightMiddle",
+  "leftIndex",
+  "leftLittle",
+  "leftRing",
+  "leftMiddle",
+  "leftThumb",
+  "rightThumb"
+],
+  "requiredOn":[
+  {
+    "engine":"MVEL",
+    "expr": "identity.registrationType='DOCUMENT-BASED'"
+  }
+],
+  "subType": "guardianBiometrics",
+  "group": "Guardian",
+  "required": false
+  },
+  {
+    "id": "introducerFirstName",
+    "description": "First Name of Introducer",
+    "label": {
+      "primary": "First Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='INTRODUCER-BASED'"
+      }
+    ],
+    "subType": "introducerFirstName",
+    "group": "Introducer",
+    "required": false
+  },
+  {
+    "id": "introducerMiddleName",
+    "description": "Middle Name of Introducer",
+    "label": {
+      "primary": "Middle Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='INTRODUCER-BASED'"
+      }
+    ],
+    "subType": "introducerMiddleName",
+    "group": "Introducer",
+    "required": false
+  },
+  {
+    "id": "introducerLastName",
+    "description": "Last Name of Introducer",
+    "label": {
+      "primary": "Last Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='INTRODUCER-BASED'"
+      }
+    ],
+    "subType": "introducerLastName",
+    "group": "Introducer",
+    "required": false
+  },
+  {
+    "id": "introducerSuffix",
+    "description": "Suffix of Introducer",
+    "label": {
+      "primary": "Suffix"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='INTRODUCER-BASED'"
+      }
+    ],
+    "subType": "introducerSuffix",
+    "group": "Introducer",
+    "required": false
+  },
+  {
+    "id": "introducerCredentialID",
+    "description": "Credential ID of Introducer. This will hold the PSN/PCN/Registration ID of the introducer.",
+    "label": {
+      "primary": "Credential ID"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "bioAttributes": null,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.registrationType='INTRODUCER-BASED'"
+      }
+    ],
+    "subType": "introducerCredentialID",
+    "group": "Introducer",
+    "required": true
+  },
+  {
+
+
+  "id": "introducerBiometrics",
+  "description": "Biometrics of Introducer",
+  "label": {
+  "primary": "Biometrics"
+},
+  "fieldCategory": "evidence",
+  "format": "none",
+  "fieldType": "dynamic",
+  "type": "biometricsType",
+  "inputRequired": true,
+  "bioAttributes": [
+  "leftEye",
+  "rightEye",
+  "rightIndex",
+  "rightLittle",
+  "rightRing",
+  "rightMiddle",
+  "leftIndex",
+  "leftLittle",
+  "leftRing",
+  "leftMiddle",
+  "leftThumb",
+  "rightThumb"
+],
+  "requiredOn":[
+  {
+    "engine":"MVEL",
+    "expr": "identity.registrationType='INTRODUCER-BASED'"
+  }
+],
+  "subType": "introducerBiometrics",
+  "group": "Introducer",
+  "required": false
+  },
+  {
+    "id": "firstName",
+    "description": "First Name of Registrant",
+    "label": {
+      "primary": "First Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "uppercased",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "type": "regex",
+        "validator": "^(?=.{1,50}$).*",
+        "arguments": []
+      }
+    ],
+    "subType": "firstName",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "middleName",
+    "description": "Middle Name of Registrant",
+    "label": {
+      "primary": "Middle Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "uppercased",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "type": "regex",
+        "validator": "^(?=.{1,50}$).*",
+        "arguments": []
+      }
+    ],
+    "subType": "middleName",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "lastName",
+    "description": "Last Name of Registrant",
+    "label": {
+      "primary": "Last Name"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "uppercased",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "type": "regex",
+        "validator": "^(?=.{1,50}$).*",
+        "arguments": []
+      }
+    ],
+    "subType": "lastName",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "suffix",
+    "description": "Suffix of Registrant",
+    "label": {
+      "primary": "Suffix"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "uppercased",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "type": "regex",
+        "validator": "^(?=.{1,50}$).*",
+        "arguments": []
+      }
+    ],
+    "subType": "suffix",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "dateOfBirth",
+    "description": "Date of Birth",
+    "label": {
+      "primary": "Date of Birth"
+    },
+    "type": "string",
+    "controlType": "dob",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "validator": "^(1869|18[7-9][0-9]|19[0-9][0-9]|20[0-9][0-9])/([0][1-9]|1[0-2])/([0][1-9]|[1-2][0-9]|3[01])$",
+        "arguments": [],
+        "type": "regex"
+      }
+    ],
+    "group": "RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "placeOfBirth",
+    "description": "Place of Birth",
+    "label": {
+      "primary": "Place of Birth"
+    },
+    "type": "simpleType",
+    "controlType": "textbox",
+    "fieldType": "dynamic",
+    "format": "none",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "group": "RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "sex",
+    "description": "Sex of Registrant",
+    "label": {
+      "primary": "Sex"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "subType": "Sex",
+    "group": "RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "bloodType",
+    "description": "Blood Type",
+    "label": {
+      "primary": "Blood Type"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "dynamic",
+    "fieldCategory" : "pvt",
+    "inputRequired" : true,
+    "subType": "BloodType",
+    "group": "RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "filipinoOrResidentAlien",
+    "description":"Filipino / Resident Alien",
+    "label": {
+      "primary": "Filipino / Resident Alien"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "dynamic",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "subType": "FilipinoOrResidentAlien",
+    "group": "RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "maritalStatus",
+    "description": "Marital Status",
+    "label": {
+      "primary": "Marital Status"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "dynamic",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "subType": "MaritalStatus",
+    "group": "RegistrantDemographics",
+    "required": false
+  },
+  {
+    "id": "permanentCountry",
+    "description": "Permanent Country of Registrant",
+    "label": {
+      "primary": "Country"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "subType": "permanentCountry",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "permanentAddressLine",
+    "description": "Permanent Address of Registrant",
+    "label": {
+      "primary": "Permanent Address"
+    },
+    "type": "simpleType",
+    "controlType":"textbox",
+    "fieldType": "dynamic",
+    "format": "uppercased",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "validator": "^[a-zA-Z0-9]*$",
+        "arguments": [],
+        "type": "regex"
+      }
+    ],
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.permanentCountry='PHILIPPINES'"
+      }
+    ],
+    "subType": "permanentAddressLine",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "permanentProvince",
+    "description": "Permanent Province of Registrant",
+    "label": {
+      "primary": "Province"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.permanentCountry='PHILIPPINES'"
+      }
+    ],
+    "subType": "permanentProvince",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "permanentCity",
+    "description": "Permanent City/Municipality of Registrant",
+    "label": {
+      "primary": "City/Municipality"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.permanentCountry='PHILIPPINES'"
+      }
+    ],
+    "subType": "permanentCity",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "permanentBarangay",
+    "description": "Permanent Barangay of Registrant",
+    "label": {
+      "primary": "Barangay"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.permanentCountry='PHILIPPINES'"
+      }
+    ],
+    "subType": "permanentBarangay",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+
+
+  "id": "permanentZipCode",
+  "description": "Zip Code of Permanent Address",
+  "label": {
+  "primary": "Zip Code"
+},
+  "type": "simpleType",
+  "controlType":"textbox",
+  "fieldType": "dynamic",
+  "format": "",
+  "fieldCategory": "pvt",
+  "inputRequired": true,
+  "requiredOn":[
+  {
+    "engine":"MVEL",
+    "expr": "identity.permanentCountry='PHILIPPINES'"
+  }
+],
+  "subType": "permanentZipCode",
+  "group": "RegistrantDemographics",
+  "required":false
+  },
+  {
+    "id": "sameAsPermanent",
+    "description": "Same as Permanent Address",
+    "label": {
+      "primary": "Same as Permanent Address"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "format": "",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "subType": "sameAsPermanent",
+    "group": "RegistrantDemographics",
+    "required":true
+  },
+  {
+    "id": "presentCountry",
+    "description": "Present Country of Registrant",
+    "label": {
+      "primary": "Country"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.sameAsPermanent='NO'"
+      }
+    ],
+    "subType": "presentCountry",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "presentAddressLine",
+    "description": "Present Address of Registrant",
+    "label": {
+      "primary": "Present Address"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "textbox",
+    "format": "uppercased",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "validators": [
+      {
+        "validator": "^[a-zA-Z0-9]*$",
+        "arguments": [],
+        "type": "regex"
+      }
+    ],
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.presentCountry='PHILIPPINES' and identity.sameAsPermanent='NO'"
+      }
+    ],
+    "subType": "presentAddressLine",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "presentProvince",
+    "description": "Present Province of Registrant",
+    "label": {
+      "primary": "Province"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.presentCountry='PHILIPPINES' and identity.sameAsPermanent='NO'"
+      }
+    ],
+    "subType": "presentProvince",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "presentCity",
+    "description": "Present City/Municipality of Registrant",
+    "label": {
+      "primary": "City/Municipality"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.presentCountry='PHILIPPINES' and identity.sameAsPermanent='NO'"
+      }
+    ],
+    "subType": "presentCity",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "presentBarangay",
+    "description": "Present Barangay of Registrant",
+    "label": {
+      "primary": "Barangay"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldType": "dynamic",
+    "format": "",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "requiredOn":[
+      {
+        "engine":"MVEL",
+        "expr": "identity.presentCountry='PHILIPPINES' and identity.sameAsPermanent='NO'"
+      }
+    ],
+    "subType": "presentBarangay",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+
+
+  "id": "presentZipCode",
+  "description": "Zip Code of Present Address",
+  "label": {
+  "primary": "Zip Code"
+},
+  "type": "simpleType",
+  "controlType":"dropdown",
+  "fieldType": "dynamic",
+  "format": "",
+  "fieldCategory": "optional",
+  "inputRequired": true,
+  "requiredOn":[
+  {
+    "engine":"MVEL",
+    "expr": "identity.presentCountry='PHILIPPINES' and identity.sameAsPermanent='NO'"
+  }
+],
+  "subType": "presentZipCode",
+  "group": "RegistrantDemographics",
+  "required":false
+  },
+  {
+    "id": "mobileno",
+    "description": "Mobile Number",
+    "label": {
+      "primary": "Mobile Number"
+    },
+    "type": "string",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "validators": [
+      {
+        "validator": "^[+]*([0-9]{1})([0-9]{9})$",
+        "arguments": [],
+        "type": "regex"
+      }
+    ],
+    "subType": "MobileNumber",
+    "contactType": "phone",
+    "group": "RegistrantDemographics",
+    "required": false
+  },
+  {
+    "id": "email",
+    "description": "Email Address",
+    "label": {
+      "primary": "Email Address"
+    },
+    "type": "string",
+    "controlType": "textbox",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "validators": [
+      {
+        "validator": "^[A-Za-z0-9_\\-]+(\\.[A-Za-z0-9_]+)*@[A-Za-z0-9_-]+(\\.[A-Za-z0-9_]+)*(\\.[a-zA-Z]{2,})$",
+        "arguments": [],
+        "type": "regex"
+      }
+    ],
+    "subType": "EmailAddress",
+    "contactType": "email",
+    "group": "RegistrantDemographics",
+    "required": false
+  },
+  {
+    "id": "claimMode",
+    "description": "Mode of Claiming",
+    "label": {
+      "primary": "Mode of Claiming"
+    },
+    "type": "simpleType",
+    "controlType": "dropdown",
+    "fieldType": "dynamic",
+    "format": "none",
+    "fieldCategory": "optional",
+    "inputRequired": true,
+    "subType": "claimMode",
+    "group":"RegistrantDemographics",
+    "required": true
+  },
+  {
+    "id": "biometricException",
+    "description": "Biometric Exceptions",
+    "label": {
+      "primary": "Biometric Exceptions"
+    },
+    "type": "simpleType",
+    "controlType":"dropdown",
+    "fieldCategory": "evidence",
+    "format": "none",
+    "fieldType": "default",
+    "inputRequired":true,
+    "subType":"biometricException",
+    "group": "RegistrantDemographics",
+    "required":false
+  },
+  {
+    "id": "individualBiometrics",
+    "description": "Individual Biometrics",
+    "label": {
+      "primary": "Individual Biometrics"
+    },
+    "type": "biometricsType",
+    "inputRequired": true,
+    "format": "none",
+    "fieldType": "default",
+    "bioAttributes": [
+      "leftEye",
+      "rightEye",
+      "rightIndex",
+      "rightLittle",
+      "rightRing",
+      "rightMiddle",
+      "leftIndex",
+      "leftLittle",
+      "leftRing",
+      "leftMiddle",
+      "leftThumb",
+      "rightThumb",
+      "face"
+    ],
+    "fieldCategory": "evidence",
+    "subType":"individualBiometrics",
+    "group": "RegistrantDemographics",
+    "required": true
+  }
+]

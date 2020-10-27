@@ -59,9 +59,9 @@ export class DemographicComponent
     textDir = localStorage.getItem("dir");
     secTextDir = localStorage.getItem("secondaryDir");
     primaryLang = localStorage.getItem("langCode");
-  //  secondaryLang = localStorage.getItem("langCode");
+    //  secondaryLang = localStorage.getItem("langCode");
     secondaryLang = localStorage.getItem("secondaryLangCode");
-   // secondaryLang = "eng";
+    // secondaryLang = "eng";
     languages = [this.primaryLang, this.secondaryLang];
     keyboardLang = appConstants.virtual_keyboard_languages[this.primaryLang];
     keyboardSecondaryLang =
@@ -222,6 +222,7 @@ export class DemographicComponent
         let response = factory.getCurrentlanguage();
         this.secondaryLanguagelabels = response["demographic"];
         this.initForm();
+
         await this.setFormControlValues();
         if (!this.dataModification) {
             if (this.isConsentMessage) this.consentDeclaration();
@@ -276,6 +277,7 @@ export class DemographicComponent
     private async initialization() {
         if (localStorage.getItem("newApplicant") === "true") {
             this.isNewApplicant = true;
+            this.dataModification = false;
         }
         if (localStorage.getItem("modifyUser") === "true") {
             console.log(localStorage.getItem("modifyUser"));
@@ -355,12 +357,19 @@ export class DemographicComponent
                     ...response["response"]["idSchema"]["locationHierarchy"],
                 ];
                 console.log(this.locationHeirarchy);
+
                 this.identityData.forEach((obj) => {
+
                     if (
                         obj.inputRequired === true &&
                         obj.controlType !== null &&
                         !(obj.controlType === "fileupload")
                     ) {
+                        console.log("testing :"+obj.toString());
+                        this.uiFields.push(obj);
+                    }
+
+                    if (obj.controlType === "fileupload") {
                         this.uiFields.push(obj);
                     }
                 });
@@ -372,6 +381,7 @@ export class DemographicComponent
                 this.setDropDownArrays();
                 this.setLocations();
                 this.setGender();
+
                 this.setResident();
                 this.setDynamicFieldValues();
                 resolve(true);
@@ -399,7 +409,7 @@ export class DemographicComponent
                     Validators.required
                 );
                 if (this.primaryLang !== this.secondaryLang) {
-                  //  alert("testing initForm")
+                    //  alert("testing initForm")
                     this.transUserForm.controls[`${control.id}`].setValidators(
                         Validators.required
                     );
@@ -472,9 +482,9 @@ export class DemographicComponent
      *  ex: { id : 'region',controlType: 'dropdown' ...}
      */
     dropdownApiCall(controlObject: any) {
-                    if (this.locationHeirarchy.includes(controlObject.id)) {
-                        if (this.locationHeirarchy.indexOf(controlObject.id) !== 0) {
-                            this.primarydropDownFields[controlObject.id] = [];
+        if (this.locationHeirarchy.includes(controlObject.id)) {
+            if (this.locationHeirarchy.indexOf(controlObject.id) !== 0) {
+                this.primarydropDownFields[controlObject.id] = [];
                 const location = this.locationHeirarchy.indexOf(controlObject.id);
                 const parentLocation = this.locationHeirarchy[location - 1];
                 let locationCode = this.userForm.get(`${parentLocation}`).value;
@@ -584,7 +594,7 @@ export class DemographicComponent
                                     languageCode: this.primaryLang,
                                 };
 
-                                this.primarydropDownFields[`${fieldName}`].push(codeValueModal);
+                                this.primarydropDownFields[fieldName].push(codeValueModal);
                             });
                         }
                     },
@@ -606,7 +616,7 @@ export class DemographicComponent
                                         valueName: element.name,
                                         languageCode: this.secondaryLang,
                                     };
-                                    this.secondaryDropDownLables[`${fieldName}`].push(
+                                    this.secondaryDropDownLables[fieldName].push(
                                         codeValueModal
                                     );
                                 });
@@ -642,7 +652,9 @@ export class DemographicComponent
         }
     }
 
+
     private async setDynamicFieldValues() {
+
         await this.getDynamicFieldValues(this.primaryLang);
         if (this.primaryLang !== this.secondaryLang) {
             await this.getDynamicFieldValues(this.secondaryLang);
@@ -716,11 +728,13 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     async setFormControlValues() {
+
         if (this.primaryLang === this.secondaryLang) {
             this.languages.pop();
             this.isReadOnly = true;
         }
         if (!this.dataModification) {
+
             this.uiFields.forEach((control) => {
                 this.userForm.controls[control.id].setValue("");
                 if (this.primaryLang !== this.secondaryLang) {
@@ -728,6 +742,7 @@ export class DemographicComponent
                 }
             });
         } else {
+
             let index = 0;
             let secondaryIndex = 1;
             this.loggerService.info("user", this.user);
@@ -747,6 +762,7 @@ export class DemographicComponent
                 secondaryIndex = 0;
             }
             this.uiFields.forEach((control) => {
+
                 if (
                     control.controlType !== "dropdown" &&
                     !appConstants.TRANSLITERATE_FIELDS.includes(control.id)
@@ -792,7 +808,7 @@ export class DemographicComponent
                                 this.user.request.demographicDetails.identity[control.id][index]
                                     .value
                             );
-                            if (this.primaryLang !== "eng"){
+                            if (this.primaryLang !== "eng") {
                                 this.transUserForm.controls[`${control.id}`].setValue(
                                     this.user.request.demographicDetails.identity[control.id][
                                         secondaryIndex
@@ -1036,8 +1052,10 @@ export class DemographicComponent
         return new Promise((resolve, reject) => {
             if (entityArray) {
                 console.log(entityArray);
+
                 entityArray.filter((element: any) => {
                     console.log(element);
+
                     if (element.langCode === langCode) {
                         let codeValue: CodeValueModal;
                         if (element.genderName) {
@@ -1215,21 +1233,22 @@ export class DemographicComponent
     onSubmit() {
 
         this.uiFields.forEach((element) => {
-           this.userForm.controls[`${element.id}`].markAsTouched();
+            this.userForm.controls[`${element.id}`].markAsTouched();
             if (this.primaryLang !== this.secondaryLang) {
                 this.transUserForm.controls[`${element.id}`].markAsTouched();
             }
 
         });
         if (this.userForm.valid) {
-
             const identity = this.createIdentityJSONDynamic();
 
             const request = this.createRequestJSON(identity);
 
-            console.log("TESTING",request);
+            console.log("TESTING", request);
+
             const responseJSON = this.createResponseJSON(identity);
             console.log(responseJSON);
+
             this.dataUploadComplete = false;
 
             if (this.dataModification) {
@@ -1262,10 +1281,11 @@ export class DemographicComponent
                     )
                 );
             } else {
-                alert("testing else");
+
                 this.subscriptions.push(
                     this.dataStorageService.addUser(request).subscribe(
                         (response) => {
+
                             if (
                                 (response[appConstants.NESTED_ERROR] === null &&
                                     response[appConstants.RESPONSE] === null) ||

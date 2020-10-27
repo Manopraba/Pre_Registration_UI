@@ -194,7 +194,7 @@ export const controlTypeResidenceStatus = 'residenceStatus';
 
 export const previewFields = ['region', 'province', 'city', 'zone', 'gender', 'residenceStatus'];
 
-export const TRANSLITERATE_FIELDS = ["fullName","addressLine1","addressLine2","addressLine3"];
+export const TRANSLITERATE_FIELDS = ["fullName", "middleName","addressLine1","addressLine2","addressLine3"];
 
 export const errorMessages = {
 
