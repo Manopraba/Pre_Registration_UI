@@ -515,9 +515,11 @@ export class DataStorageService {
     }
 
     getDynamicFieldsandValues(langCode) {
-        // const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';
-        const url = this.BASE_URL + appConstants.APPEND_URL.master_data + `dynamicfields?langCode=${langCode}`;
+       /*  const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';*/
+
+       const url = this.BASE_URL + appConstants.APPEND_URL.master_data + `dynamicfields?langCode=${langCode}`;
         console.log(url);
+        alert("printing dynamic url"+url);
         return this.httpClient.get(url);
     }
 }

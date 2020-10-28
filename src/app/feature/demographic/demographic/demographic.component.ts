@@ -66,6 +66,8 @@ export class DemographicComponent
     keyboardLang = appConstants.virtual_keyboard_languages[this.primaryLang];
     keyboardSecondaryLang =
         appConstants.virtual_keyboard_languages[this.secondaryLang];
+   /* using Check box*/
+
 
     files: FilesModel;
     agePattern: string;
@@ -167,6 +169,8 @@ export class DemographicComponent
     uiFields = [];
     primaryuserForm = false;
     primarydropDownFields = {};
+    secondaryCheckBoxFields = {};
+    primaryCheckBoxFields = {};
     secondaryDropDownLables = {};
     secondaryuserForm = false;
     locationHeirarchy = [];
@@ -174,6 +178,8 @@ export class DemographicComponent
     dynamicFields = [];
     dynamicFieldAndValues = [];
     private dataObj: void;
+    form: FormGroup;
+
 
     /**
      * @description Creates an instance of DemographicComponent.
@@ -196,7 +202,10 @@ export class DemographicComponent
         public dialog: MatDialog,
         private matKeyboardService: MatKeyboardService,
         private loggerService: LogService // private errorService: ErrorService
-    ) {
+    )
+
+
+    {
         super(dialog);
         this.translate.use(localStorage.getItem("langCode"));
         this.subscriptions.push(
@@ -205,6 +214,7 @@ export class DemographicComponent
                 .subscribe((message) => (this.message = message))
         );
     }
+
 
     /**
      * @description This is the angular life cycle hook called upon loading the component.
@@ -379,9 +389,9 @@ export class DemographicComponent
                 );
                 console.log(this.dynamicFields);
                 this.setDropDownArrays();
+                this.setCheckBoxArrays()
                 this.setLocations();
                 this.setGender();
-
                 this.setResident();
                 this.setDynamicFieldValues();
                 resolve(true);
@@ -456,6 +466,19 @@ export class DemographicComponent
      */
     setDropDownArrays() {
         this.getIntialDropDownArrays();
+    }
+    setCheckBoxArrays(){
+        this.getIntialCheckBoxarrays();
+    }
+    getIntialCheckBoxarrays(){
+        this.uiFields.forEach((control)=>{
+            if(control.controlType=='checkbox'){
+                this.primaryCheckBoxFields[control.id]=[];
+                if(this.primaryLang!==this.secondaryLang){}
+                this.secondaryCheckBoxFields[control.id]=[];
+            }
+
+        })
     }
 
     /**
@@ -651,6 +674,8 @@ export class DemographicComponent
             );
         }
     }
+
+
 
 
     private async setDynamicFieldValues() {
@@ -1088,6 +1113,11 @@ export class DemographicComponent
             }
         });
     }
+
+
+
+
+
 
     /**
      * @description This is to get the top most location Hierarchy, i.e. `Country Code`

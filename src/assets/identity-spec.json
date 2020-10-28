@@ -284,7 +284,7 @@
             "eng": "Same as Permanent Address"
           },
           "type": "simpleType",
-          "controlType": "textbox",
+          "controlType": "checkbox",
           "inputRequired": true,
           "validators": [],
           "required": true

@@ -28,6 +28,7 @@
                                         matInput
                                         formControlName="{{ field.id }}"
 
+
                                         (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
                                         (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
                                         #keyboardRef
@@ -35,23 +36,33 @@
                                 />
                             </mat-form-field>
                         </ng-container>
+                        <ng-container *ngIf="field.controlType === 'checkbox'">
+                            <mat-form-field  [ngClass]="'checkbox-field'">
 
+                                <mat-checkbox>
 
-                       <!-- <ng-container *ngIf="field.controlType === 'fileupload'">
-
-                            <mat-form-field class="file-upload__input">
                                 <mat-label>{{ field.labelName[primaryLang] }}
-                                    /{{ field.labelName[secondaryLang] }}</mat-label>
+                                </mat-label>
+                                </mat-checkbox>
+                                <input  onclick="permanent(this.userForm)"
+                                        matInput
+                                        formControlName="{{ field.id }}"
 
-                                <mat-form-field>
-                                    <input matInput />
-                                </mat-form-field>
-
-
-
-
+                                        (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                        (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                        #keyboardRef
+                                        #input
+                                />
                             </mat-form-field>
-                        </ng-container>-->
+
+
+
+                        </ng-container>
+
+
+
+
+
 
                         <ng-container *ngIf="field.controlType === 'date'">
 
