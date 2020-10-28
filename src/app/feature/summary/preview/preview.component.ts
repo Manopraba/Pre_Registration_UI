@@ -61,7 +61,7 @@ export class PreviewComponent implements OnInit {
     await this.getDocumentCategories();
     this.previewData = this.user.request.demographicDetails.identity;
     this.calculateAge();
-    this.previewData.primaryAddress = this.combineAddress(0);
+   // this.previewData.primaryAddress = this.combineAddress(0);
     //this.previewData.secondaryAddress = this.combineAddress(1);
     this.formatDob(this.previewData.dateOfBirth);
     this.setFieldValues();
@@ -184,12 +184,12 @@ export class PreviewComponent implements OnInit {
 
   combineAddress(index: number) {
     const address =
-      this.previewData.addressLine1[index].value +
-      (this.previewData.addressLine2[index].value
-        ? ", " + this.previewData.addressLine2[index].value
+      this.previewData.permanentAddressLine[index].value +
+      (this.previewData.permanentAddressLine[index].value
+        ? ", " + this.previewData.permanentAddressLine[index].value
         : "") +
-      (this.previewData.addressLine3[index].value
-        ? ", " + this.previewData.addressLine3[index].value
+      (this.previewData.permanentAddressLine[index].value
+        ? ", " + this.previewData.permanentAddressLine[index].value
         : "");
 
     return address;

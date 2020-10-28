@@ -194,7 +194,9 @@ export const controlTypeResidenceStatus = 'residenceStatus';
 
 export const previewFields = ['region', 'province', 'city', 'zone', 'gender', 'residenceStatus'];
 
-export const TRANSLITERATE_FIELDS = ["fullName", "middleName","addressLine1","addressLine2","addressLine3"];
+export const TRANSLITERATE_FIELDS = ["fullName", "middleName","lastName","suffix","placeOfBirth","permanentAddressLine","mobileno","region","province","city","zone","postalCode",
+  "sameAsPermanent","introducerFirstName","introducerMiddleName","introducerLastName","introducerSuffix","guardianCredentialID","registrationType","guardianFirstName",
+  "guardianMiddleName","guardianLastName","guardianSuffix","modeOfClaim","supportingDocNumber1","supportingDocNumber2","docCatOne","docCatTwo","introducerCredentialID","addressLine1","addressLine2","addressLine3"];
 
 export const errorMessages = {
 

@@ -62,13 +62,7 @@
           "controlType": "textbox",
           "fieldType": "default",
           "inputRequired": true,
-          "validators": [
-            {
-              "type": "regex",
-              "validator": "^(?=.{1,50}$).*",
-              "arguments": []
-            }
-          ],
+          "validators": [],
           "required": true
         },
         {
@@ -100,13 +94,7 @@
           "controlType": "textbox",
           "fieldType": "default",
           "inputRequired": true,
-          "validators": [
-            {
-              "type": "regex",
-              "validator": "^(?=.{1,50}$).*",
-              "arguments": []
-            }
-          ],
+          "validators": [],
           "required": true
         },
         {
@@ -210,14 +198,8 @@
           "controlType": "textbox",
           "fieldType": "dynamic",
           "inputRequired": true,
-          "validators": [
-            {
-              "validator": "^[a-zA-Z0-9]*$",
-              "arguments": [],
-              "type": "regex"
-            }
-          ],
-          "required": false
+          "validators":[],
+          "required": true
         },
         {
           "id": "region",
@@ -541,7 +523,7 @@
           "required": true
         },
         {
-          "id": "docCatOne",
+            "id": "docCatOne",
           "description": "Document Category 1",
           "labelName": {
             "eng": "Document Category 1",

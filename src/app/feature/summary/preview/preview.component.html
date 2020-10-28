@@ -60,7 +60,7 @@
             <tr>
               <td>{{ 'preview.label_address' | translate }}</td>
               <td>:</td>
-              <td>{{ previewData.primaryAddress }}</td>
+              <td>{{ previewData.permanentAddressLine[0].value }}</td>
             </tr>
             <tr>
               <td>{{ 'preview.label_region' | translate }}</td>
@@ -85,7 +85,7 @@
             <tr>
               <td>{{ 'preview.label_mob_num' | translate }}</td>
               <td>:</td>
-              <td>{{ previewData.phone }}</td>
+              <td>{{ previewData.mobileno[0].value }}</td>
             </tr>
             <tr>
               <td>{{ 'preview.label_email_id' | translate }}</td>
