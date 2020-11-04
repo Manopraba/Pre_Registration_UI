@@ -313,6 +313,7 @@ export class PreviewComponent implements OnInit {
 
   combineAddress(index: number) {
     const address =
+
         this.previewData.permanentAddressLine[index].value +
         (this.previewData.permanentAddressLine[index].value
             ? ", " + this.previewData.permanentAddressLine[index].value
@@ -320,6 +321,7 @@ export class PreviewComponent implements OnInit {
         (this.previewData.permanentAddressLine[index].value
             ? ", " + this.previewData.permanentAddressLine[index].value
             : "");
+
     return address;
   }
 

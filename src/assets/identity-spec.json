@@ -63,7 +63,11 @@
           "fieldType": "default",
           "inputRequired": true,
           "validators": [],
+<<<<<<< HEAD
           "required": false
+=======
+          "required": true
+>>>>>>> d1ed9c60ed8f08a2c8294e5606671a49c368287e
         },
         {
           "id": "lastName",
@@ -324,7 +328,7 @@
             "eng": "Same as Permanent Address"
           },
           "type": "simpleType",
-          "controlType": "textbox",
+          "controlType": "checkbox",
           "inputRequired": true,
           "validators": [],
           "required": true
@@ -563,6 +567,31 @@
           },
           "type": "simpleType",
 
+<<<<<<< HEAD
+=======
+        {
+          "id": "supportingDocNumber1",
+          "description": "Number of Supporting Document 1",
+          "labelName": {
+            "eng": "Document Number 1",
+            "ara": "Document Number 1"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "default",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+            "id": "docCatOne",
+          "description": "Document Category 1",
+          "labelName": {
+            "eng": "Document Category 1",
+            "ara": "Document Category 1"
+          },
+          "type": "simpleType",
+>>>>>>> d1ed9c60ed8f08a2c8294e5606671a49c368287e
           "controlType": "dropdown",
           "fieldType": "dynamic",
 

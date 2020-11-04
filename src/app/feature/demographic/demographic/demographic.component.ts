@@ -179,6 +179,8 @@ export class DemographicComponent
     dynamicFields = [];
     dynamicFieldAndValues = [];
     private dataObj: void;
+    form: FormGroup;
+
 
 
 
