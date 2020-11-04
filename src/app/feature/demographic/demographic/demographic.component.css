@@ -40,11 +40,13 @@
 .user header {
   margin: 0;
   font-weight: bold;
-  color: #fd518c;
+  color: #de6e32;
 }
 
+hr { background-color: #065aec; height: 1px; border: 0; }
+
 .user hr {
-  border-top: .0px solid #ff4081;
+  border-top: .0px solid #ff4040;
   position: relative;
   left: -31.8px;
   margin-top: 0.5rem;
@@ -329,7 +331,7 @@ mat-icon {
 }
 
 :ng-deep .mat-form-field-invalid .mat-input-element {
-  caret-color: #ff0000;
+  caret-color: #ef0606;
   color: #ff0000;
 }
 

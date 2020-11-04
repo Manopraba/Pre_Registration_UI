@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from "@angular/core";
 import { DataStorageService } from "src/app/core/services/data-storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -8,6 +10,7 @@ import Utils from "src/app/app.util";
 import * as appConstants from "../../../app.constants";
 import LanguageFactory from "src/assets/i18n";
 import { ConfigService } from "src/app/core/services/config.service";
+import { CodeValueModal } from "src/app/shared/models/demographic-model/code.value.modal";
 
 @Component({
   selector: "app-preview",
@@ -35,13 +38,20 @@ export class PreviewComponent implements OnInit {
   secondaryLocations;
   residenceStatus: any;
   genders: any;
+
+  identityData = [];
+  uiFields = [];
+  locationHeirarchy = [];
+  dynamicFields = [];
+  primarydropDownFields = {};
+  secondaryDropDownFields = {};
   constructor(
-    private dataStorageService: DataStorageService,
-    private router: Router,
-    private registrationService: RegistrationService,
-    private translate: TranslateService,
-    private activatedRoute: ActivatedRoute,
-    private configService: ConfigService
+      private dataStorageService: DataStorageService,
+      private router: Router,
+      private registrationService: RegistrationService,
+      private translate: TranslateService,
+      private activatedRoute: ActivatedRoute,
+      private configService: ConfigService
   ) {
     this.translate.use(localStorage.getItem("langCode"));
     localStorage.setItem("modifyDocument", "false");
@@ -49,11 +59,12 @@ export class PreviewComponent implements OnInit {
 
   async ngOnInit() {
     this.primaryLanguage = localStorage.getItem("langCode");
-    this.secondaryLanguage = localStorage.getItem("langCode");
+    this.secondaryLanguage = localStorage.getItem("secondaryLangCode");
     this.activatedRoute.params.subscribe((param) => {
       this.preRegId = param["appId"];
     });
     this.locationData();
+    await this.getIdentityJsonFormat();
     await this.getResidentDetails();
     await this.getGenderDetails();
     await this.getUserInfo();
@@ -70,30 +81,148 @@ export class PreviewComponent implements OnInit {
     this.documentsMapping();
   }
 
+  async getIdentityJsonFormat() {
+    return new Promise((resolve, reject) => {
+      this.dataStorageService.getIdentityJson().subscribe((response) => {
+        console.log(response);
+        this.identityData = response["response"]["idSchema"]["identity"];
+        this.locationHeirarchy = [
+          ...response["response"]["idSchema"]["locationHierarchy"],
+        ];
+        this.identityData.forEach((obj) => {
+          if (
+              obj.inputRequired === true &&
+              obj.controlType !== null &&
+              !(obj.controlType === "fileupload")
+          ) {
+            this.uiFields.push(obj);
+          }
+        });
+        this.dynamicFields = this.uiFields.filter(
+            (fields) =>
+                fields.controlType === "dropdown" && fields.fieldType === "dynamic"
+        );
+        this.getIntialDropDownArrays();
+        this.setDynamicFieldValues();
+        resolve(true);
+      });
+    });
+  }
+
+  getIntialDropDownArrays() {
+    this.uiFields.forEach((control) => {
+      if (control.controlType === "dropdown") {
+        this.primarydropDownFields[control.id] = [];
+        if (this.primaryLanguage != this.secondaryLanguage) {
+          this.secondaryDropDownFields[control.id] = [];
+        }
+      }
+    });
+  }
+
+  private async setDynamicFieldValues() {
+    await this.getDynamicFieldValues(this.primaryLanguage);
+    if (this.primaryLanguage !== this.secondaryLanguage) {
+      await this.getDynamicFieldValues(this.secondaryLanguage);
+    }
+  }
+
+  getDynamicFieldValues(lang) {
+    return new Promise((resolve) => {
+      this.dataStorageService
+          .getDynamicFieldsandValues(lang)
+          .subscribe((response) => {
+            console.log(response);
+            let dynamicField = response[appConstants.RESPONSE]["data"];
+            this.dynamicFields.forEach((field) => {
+              dynamicField.forEach((res) => {
+                if (field.id === res.name && res.langCode === this.primaryLanguage) {
+                  this.filterOnLangCode(
+                      this.primaryLanguage,
+                      res.name,
+                      res["fieldVal"]
+                  );
+                }
+                if (this.primaryLanguage !== this.secondaryLanguage) {
+                  if (
+                      field.id === res.name &&
+                      res.langCode === this.secondaryLanguage
+                  ) {
+                    this.filterOnLangCode(
+                        this.secondaryLanguage,
+                        res.name,
+                        res["fieldVal"]
+                    );
+                  }
+                }
+              });
+            });
+          });
+      resolve(true);
+    });
+  }
+
+  private filterOnLangCode(langCode: string, field: string, entityArray: any) {
+    return new Promise((resolve, reject) => {
+      if (entityArray) {
+        entityArray.filter((element: any) => {
+          if (element.langCode === langCode) {
+            let codeValue: CodeValueModal;
+            if (element.genderName) {
+              codeValue = {
+                valueCode: element.code,
+                valueName: element.genderName,
+                languageCode: element.langCode,
+              };
+            } else if (element.name) {
+              codeValue = {
+                valueCode: element.code,
+                valueName: element.name,
+                languageCode: element.langCode,
+              };
+            } else {
+              codeValue = {
+                valueCode: element.code,
+                valueName: element.value,
+                languageCode: element.langCode,
+              };
+            }
+            if (langCode === this.primaryLanguage) {
+              this.primarydropDownFields[field].push(codeValue);
+            } else {
+              this.secondaryDropDownFields[field].push(codeValue);
+            }
+            resolve(true);
+          }
+        });
+      }
+    });
+  }
+
   getUserInfo() {
     return new Promise((resolve) => {
       this.dataStorageService
-        .getUser(this.preRegId.toString())
-        .subscribe((response) => {
-          this.user = new UserModel(
-            this.preRegId.toString(),
-            response[appConstants.RESPONSE],
-            undefined,
-            []
-          );
-          resolve(true);
-        });
+          .getUser(this.preRegId.toString())
+          .subscribe((response) => {
+            this.user = new UserModel(
+                this.preRegId.toString(),
+                response[appConstants.RESPONSE],
+                undefined,
+                []
+            );
+            resolve(true);
+          });
     });
   }
 
   getUserFiles() {
     return new Promise((resolve) => {
       this.dataStorageService
-        .getUserDocuments(this.preRegId)
-        .subscribe((response) => {
-          this.setUserFiles(response);
-          resolve(true);
-        });
+          .getUserDocuments(this.preRegId)
+          .subscribe((response) => {
+            this.setUserFiles(response);
+            resolve(true);
+          });
     });
   }
 
@@ -104,42 +233,42 @@ export class PreviewComponent implements OnInit {
   }
   getDocumentCategories() {
     const applicantcode = localStorage.getItem("applicantType");
-    //alert(applicantcode);
     return new Promise((resolve) => {
       this.dataStorageService
-        .getDocumentCategories(applicantcode)
-        .subscribe((response) => {
-              this.documentTypes =
-            response[appConstants.RESPONSE].documentCategories;
-          resolve(true);
-        });
+          .getDocumentCategories(applicantcode)
+          .subscribe((response) => {
+            this.documentTypes =
+                response[appConstants.RESPONSE].documentCategories;
+            resolve(true);
+          });
     });
   }
 
   formatDob(dob: string) {
     dob = dob.replace(/\//g, "-");
     this.dateOfBirthPrimary = Utils.getBookingDateTime(
-      dob,
-      "",
-      localStorage.getItem("langCode")
+        dob,
+        "",
+        localStorage.getItem("langCode")
     );
     this.dateOfBirthSecondary = Utils.getBookingDateTime(
-      dob,
-      "",
-      localStorage.getItem("secondaryLangCode")
+        dob,
+        "",
+        localStorage.getItem("secondaryLangCode")
     );
   }
 
   setFieldValues() {
-
     let fields = appConstants.previewFields;
     fields.forEach((field) => {
       this.previewData[field].forEach((element) => {
         if(!(field === appConstants.controlTypeResidenceStatus || field === appConstants.controlTypeGender)){
+
           element.name = this.locCodeToName(element.value, element.language);
+          alert(''+element.name +this.locCodeToName(element.value, element.language) )
         }
         else if(field === appConstants.controlTypeResidenceStatus){
-            this.residenceStatus.forEach(status => {
+          this.residenceStatus.forEach(status => {
             if(status.code === element.value && element.language === status.langCode){
               element.name = status.name;
             }
@@ -163,9 +292,9 @@ export class PreviewComponent implements OnInit {
       this.documentTypes.forEach((type) => {
         const file = this.files.filter((file) => file.docCatCode === type.code);
         if (
-          type.code === "POA" &&
-          file.length === 0 &&
-          this.registrationService.getSameAs() !== ""
+            type.code === "POA" &&
+            file.length === 0 &&
+            this.registrationService.getSameAs() !== ""
         ) {
           const obj = {
             docName: this.sameAs,
@@ -184,20 +313,19 @@ export class PreviewComponent implements OnInit {
 
   combineAddress(index: number) {
     const address =
-      this.previewData.addressLine1[index].value +
-      (this.previewData.addressLine2[index].value
-        ? ", " + this.previewData.addressLine2[index].value
-        : "") +
-      (this.previewData.addressLine3[index].value
-        ? ", " + this.previewData.addressLine3[index].value
-        : "");
-
+        this.previewData.permanentAddressLine[index].value +
+        (this.previewData.permanentAddressLine[index].value
+            ? ", " + this.previewData.permanentAddressLine[index].value
+            : "") +
+        (this.previewData.permanentAddressLine[index].value
+            ? ", " + this.previewData.permanentAddressLine[index].value
+            : "");
     return address;
   }
 
   getSecondaryLanguageLabels() {
     let factory = new LanguageFactory(
-      localStorage.getItem("langCode")
+        localStorage.getItem("secondaryLangCode")
     );
     let response = factory.getCurrentlanguage();
     this.secondaryLanguagelabels = response["preview"];
@@ -215,7 +343,7 @@ export class PreviewComponent implements OnInit {
     const now = new Date();
     const born = new Date(this.previewData.dateOfBirth);
     const years = Math.floor(
-      (now.getTime() - born.getTime()) / (365.25 * 24 * 60 * 60 * 1000)
+        (now.getTime() - born.getTime()) / (365.25 * 24 * 60 * 60 * 1000)
     );
     this.previewData.age = years;
   }
@@ -253,16 +381,16 @@ export class PreviewComponent implements OnInit {
   private getLocations(langCode) {
     return new Promise((resolve) => {
       const countryCode = this.configService.getConfigByKey(
-        appConstants.CONFIG_KEYS.mosip_country_code
+          appConstants.CONFIG_KEYS.mosip_country_code
       );
       this.dataStorageService
-        .getLocationsHierarchyByLangCode(langCode, countryCode)
-        .subscribe((response) => {
-          if (response[appConstants.RESPONSE]) {
-            const locations = response[appConstants.RESPONSE].locations;
-            resolve(locations);
-          }
-        });
+          .getLocationsHierarchyByLangCode(langCode, countryCode)
+          .subscribe((response) => {
+            if (response[appConstants.RESPONSE]) {
+              const locations = response[appConstants.RESPONSE].locations;
+              resolve(locations);
+            }
+          });
     });
   }
   private getGenderDetails() {
@@ -270,9 +398,9 @@ export class PreviewComponent implements OnInit {
       this.dataStorageService.getGenderDetails().subscribe((response) => {
         if (response[appConstants.RESPONSE]) {
           this.genders =
-            response[appConstants.RESPONSE][
-              appConstants.DEMOGRAPHIC_RESPONSE_KEYS.genderTypes
-            ];
+              response[appConstants.RESPONSE][
+                  appConstants.DEMOGRAPHIC_RESPONSE_KEYS.genderTypes
+                  ];
           resolve(true);
         }
       });
@@ -292,9 +420,9 @@ export class PreviewComponent implements OnInit {
       this.dataStorageService.getResidentDetails().subscribe((response) => {
         if (response[appConstants.RESPONSE]) {
           this.residenceStatus =
-            response[appConstants.RESPONSE][
-              appConstants.DEMOGRAPHIC_RESPONSE_KEYS.residentTypes
-            ];
+              response[appConstants.RESPONSE][
+                  appConstants.DEMOGRAPHIC_RESPONSE_KEYS.residentTypes
+                  ];
           resolve(true);
         }
       });
@@ -302,10 +430,10 @@ export class PreviewComponent implements OnInit {
   }
   async locationData() {
     await this.getLocations(localStorage.getItem("langCode")).then(
-      (value) => (this.primaryLocations = value)
+        (value) => (this.primaryLocations = value)
     );
     this.getLocations(localStorage.getItem("secondaryLangCode")).then(
-      (value) => (this.secondaryLocations = value)
+        (value) => (this.secondaryLocations = value)
     );
   }
 
@@ -314,8 +442,8 @@ export class PreviewComponent implements OnInit {
     this.documentMapObject.forEach((object) => {
       if (object.fileName === undefined) {
         if (
-          object.code === "POA" &&
-          this.registrationService.getSameAs() !== ""
+            object.code === "POA" &&
+            this.registrationService.getSameAs() !== ""
         ) {
           flag = true;
         } else {
@@ -345,3 +473,6 @@ export class PreviewComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 }
+
+
+

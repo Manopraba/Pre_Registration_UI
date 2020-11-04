@@ -5,7 +5,7 @@
     <!--<div class="wrapper">-->
     <div class="user" *ngIf="primaryuserForm">
         <header>{{ "demographic.title" | translate }}</header>
-        <hr/>
+        <hr>
 
         <form [formGroup]="userForm" class="user__form">
             <div
@@ -18,7 +18,7 @@
             >
                 <h4>{{ "demographic.language" | translate }}</h4>
                 <ng-container *ngFor="let field of uiFields">
-                    <div id="data" class="Column1" style="float:left;width:700px;">
+                    <div id="data" class="Column1" style="float:left;width:850px;">
                     <div>
                         <ng-container *ngIf="field.controlType === 'textbox'">
                             <mat-form-field [ngClass]="'text-field'">
@@ -122,7 +122,7 @@
                     </div>
                     </div>
 
-                    <div id="Column2" style="float:left;width:700px;">
+                    <div id="Column2" style="float:left;width:850px;">
 
                         <ng-container *ngIf="field.controlType === 'dropdown'">
                             <mat-form-field [ngClass]="'dropdown-field'">
@@ -186,7 +186,7 @@
             </div>
         </form>
 
-    </div>
+
 </div>
 
 <!--  </div>-->

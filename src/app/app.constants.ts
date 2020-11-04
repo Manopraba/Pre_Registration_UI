@@ -192,10 +192,15 @@ export const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug
 export const controlTypeGender = 'gender';
 export const controlTypeResidenceStatus = 'residenceStatus';
 
-export const previewFields = ['region', 'province', 'city', 'zone', 'gender', 'residenceStatus'];
+export const previewFields = ['region', 'province', 'city', 'zone','postalCode'];
 
-export const TRANSLITERATE_FIELDS = ["fullName", "middleName","addressLine1","addressLine2","addressLine3"];
-
+export const TRANSLITERATE_FIELDS = ['gender', 'modeOfClaim','registrationType','supportingDoc1','supportingDoc2','bloodType','maritalStatus',
+    "fullName", "middleName","lastName","sameAsPermanent",
+  "permanentAddressLine","placeOfBirth","introducerCredentialID","mobileno",
+  "suffix", "introducerFirstName","introducerMiddleName","introducerLastName","introducerSuffix",
+  "guardianCredentialID","guardianFirstName","guardianMiddleName",
+  "guardianLastName","guardianSuffix","modeOfClaim","registrationType",
+  "registrationType","supportingDocNumber1","supportingDocCatOne","supportingDocNumber2","supportingDocCatTwo",]
 export const errorMessages = {
 
   requiredMessage : {

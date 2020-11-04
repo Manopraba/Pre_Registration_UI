@@ -116,10 +116,15 @@ export class DataStorageService {
      * @memberof DataStorageService
      */
     addUser(identity: any) {
+
         const obj = new RequestModel(appConstants.IDS.newUser, identity);
+
+        console.log("print object"+obj);
         let url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.applicants;
+        console.log("print add url"+url);
         return this.httpClient.post(url, obj);
+
     }
 
     updateUser(identity: any, preRegId: string) {
@@ -488,7 +493,7 @@ export class DataStorageService {
     }
 
     getIdentityJson() {
-        // const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';
+       // const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';
        const url = "assets/identity-spec.json";
         return this.httpClient.get(url);
     }
@@ -517,7 +522,7 @@ export class DataStorageService {
     getDynamicFieldsandValues(langCode) {
         // const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';
         const url = this.BASE_URL + appConstants.APPEND_URL.master_data + `dynamicfields?langCode=${langCode}`;
-        console.log(url);
+        console.log("print dynamic Url"+url);
         return this.httpClient.get(url);
     }
 }

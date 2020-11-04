@@ -66,6 +66,8 @@ export class DemographicComponent
     keyboardLang = appConstants.virtual_keyboard_languages[this.primaryLang];
     keyboardSecondaryLang =
         appConstants.virtual_keyboard_languages[this.secondaryLang];
+   /* using Check box*/
+
 
     files: FilesModel;
     agePattern: string;
@@ -105,6 +107,7 @@ export class DemographicComponent
     userForms = new FormGroup({});
     transUserForm = new FormGroup({});
     maxDate = new Date(Date.now());
+    reistrationType ="";
     preRegId = "";
     loginId = "";
     user: UserModel = new UserModel();
@@ -167,6 +170,8 @@ export class DemographicComponent
     uiFields = [];
     primaryuserForm = false;
     primarydropDownFields = {};
+    secondaryCheckBoxFields = {};
+    primaryCheckBoxFields = {};
     secondaryDropDownLables = {};
     secondaryuserForm = false;
     locationHeirarchy = [];
@@ -174,6 +179,8 @@ export class DemographicComponent
     dynamicFields = [];
     dynamicFieldAndValues = [];
     private dataObj: void;
+
+
 
     /**
      * @description Creates an instance of DemographicComponent.
@@ -196,7 +203,10 @@ export class DemographicComponent
         public dialog: MatDialog,
         private matKeyboardService: MatKeyboardService,
         private loggerService: LogService // private errorService: ErrorService
-    ) {
+    )
+
+
+    {
         super(dialog);
         this.translate.use(localStorage.getItem("langCode"));
         this.subscriptions.push(
@@ -205,6 +215,7 @@ export class DemographicComponent
                 .subscribe((message) => (this.message = message))
         );
     }
+
 
     /**
      * @description This is the angular life cycle hook called upon loading the component.
@@ -350,8 +361,7 @@ export class DemographicComponent
         return new Promise((resolve, reject) => {
             this.dataStorageService.getIdentityJson().subscribe((response) => {
                 console.log(response);
-                // this.identityData = response["identity"];
-                // this.locationHeirarchy = [...response["locationHierarchy"]];
+
                 this.identityData = response["response"]["idSchema"]["identity"];
                 this.locationHeirarchy = [
                     ...response["response"]["idSchema"]["locationHierarchy"],
@@ -379,9 +389,9 @@ export class DemographicComponent
                 );
                 console.log(this.dynamicFields);
                 this.setDropDownArrays();
+                this.setCheckBoxArrays()
                 this.setLocations();
                 this.setGender();
-
                 this.setResident();
                 this.setDynamicFieldValues();
                 resolve(true);
@@ -409,7 +419,7 @@ export class DemographicComponent
                     Validators.required
                 );
                 if (this.primaryLang !== this.secondaryLang) {
-                    //  alert("testing initForm")
+
                     this.transUserForm.controls[`${control.id}`].setValidators(
                         Validators.required
                     );
@@ -457,6 +467,19 @@ export class DemographicComponent
     setDropDownArrays() {
         this.getIntialDropDownArrays();
     }
+    setCheckBoxArrays(){
+        this.getIntialCheckBoxarrays();
+    }
+    getIntialCheckBoxarrays(){
+        this.uiFields.forEach((control)=>{
+            if(control.controlType=='checkbox'){
+                this.primaryCheckBoxFields[control.id]=[];
+                if(this.primaryLang!==this.secondaryLang){}
+                this.secondaryCheckBoxFields[control.id]=[];
+            }
+
+        })
+    }
 
     /**
      * @description this method initialise the primary and secondary dropdown array for the
@@ -484,6 +507,7 @@ export class DemographicComponent
     dropdownApiCall(controlObject: any) {
         if (this.locationHeirarchy.includes(controlObject.id)) {
             if (this.locationHeirarchy.indexOf(controlObject.id) !== 0) {
+
                 this.primarydropDownFields[controlObject.id] = [];
                 const location = this.locationHeirarchy.indexOf(controlObject.id);
                 const parentLocation = this.locationHeirarchy[location - 1];
@@ -491,7 +515,62 @@ export class DemographicComponent
                 this.loadLocationData(locationCode, controlObject.id);
             }
         }
+        /*this.uiFields.forEach((control) => {
+
+            if (
+                control.id !== "registrationType"
+
+            ) {
+                this.getDocumentBasedJsonFormat();
+                alert("document based+getDocumentBasedJsonFormat")
+                }
+
+        })
+
+         if( this.reistrationType=='Introducer-based')
+
+        {alert("Introducer");
+            this.getIntroduceBasedJsonFormat();
+        }
+*/
+
     }
+
+   /* async getIntroduceBasedJsonFormat() {
+        alert("getIntroduceBasedJsonFormat");
+        return new Promise((resolve, reject) => {
+            this.dataStorageService.getIdentityIntroduceJson().subscribe((response) => {
+                console.log(response);
+
+                this.identityData = response["response"]["idSchema"]["identity"];
+
+
+                this.identityData.forEach((obj) => {
+
+                   {
+                        console.log("testing :"+obj.toString());
+                        this.uiFields.push(obj);
+                    }
+
+                  /!*  if (obj.controlType === "fileupload") {
+                        this.uiFields.push(obj);
+                    }*!/
+                });
+                this.dynamicFields = this.uiFields.filter(
+                    (fields) =>
+                        fields.controlType === "dropdown" && fields.fieldType === "dynamic"
+                );
+                console.log(this.dynamicFields);
+                this.setDropDownArrays();
+                this.setCheckBoxArrays()
+               /!* this.setLocations();
+                this.setGender();
+                this.setResident();*!/
+                this.setDynamicFieldValues();
+                resolve(true);
+            });
+        });
+    }*/
 
     /**
      * @description this method will copy dropdown values from its
@@ -651,6 +730,8 @@ export class DemographicComponent
             );
         }
     }
+
+
 
 
     private async setDynamicFieldValues() {
@@ -1089,6 +1170,11 @@ export class DemographicComponent
         });
     }
 
+
+
+
+
+
     /**
      * @description This is to get the top most location Hierarchy, i.e. `Country Code`
      *
@@ -1247,13 +1333,14 @@ export class DemographicComponent
             console.log("TESTING", request);
 
             const responseJSON = this.createResponseJSON(identity);
-            console.log(responseJSON);
+            console.log("create resposejson"+responseJSON);
 
             this.dataUploadComplete = false;
 
             if (this.dataModification) {
-
+                alert("testing modification" +request);
                 this.subscriptions.push(
+
                     this.dataStorageService.updateUser(request, this.preRegId).subscribe(
                         (response) => {
                             if (
@@ -1281,7 +1368,7 @@ export class DemographicComponent
                     )
                 );
             } else {
-
+alert("add user");
                 this.subscriptions.push(
                     this.dataStorageService.addUser(request).subscribe(
                         (response) => {
@@ -1300,17 +1387,22 @@ export class DemographicComponent
                                         ] === appConstants.ERROR_CODES.invalidPin
                                 ) {
                                     console.log(response);
+                                    alert("add user using error");
                                     message = this.formValidation(response);
                                 } else message = this.errorlabels.error;
                                 this.onError(message, "");
+                                alert("add user" + this.errorlabels.error);
                                 return;
                             } else {
+                                alert("add user" + this.preRegId);
                                 this.preRegId =
                                     response[appConstants.RESPONSE].preRegistrationId;
                             }
+
                             this.onSubmission();
                         },
                         (error) => {
+                            alert("add error");
                             this.loggerService.error(error);
                             this.onError(this.errorlabels.error, error);
                         }
@@ -1336,6 +1428,7 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     onSubmission() {
+        alert("add  submission");
         this.canDeactivateFlag = false;
         this.checked = true;
         this.dataUploadComplete = true;
@@ -1475,6 +1568,7 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     private createResponseJSON(identity) {
+        alert("testing for create response json")
         let preRegistrationId = "";
         let createdBy = this.loginId;
         let createdDateTime = Utils.getCurrentDate();
@@ -1510,8 +1604,10 @@ export class DemographicComponent
                 (currentDobYears < ageToBeAdult && changedDobYears < ageToBeAdult) ||
                 (currentDobYears > ageToBeAdult && changedDobYears > ageToBeAdult)
             ) {
+                alert("dateof birth validation")
                 this.showPreviewButton = true;
             } else {
+                alert("dateof birth  error validation")
                 this.showPreviewButton = false;
                 localStorage.setItem("modifyUserFromPreview", "false");
             }
@@ -1595,4 +1691,49 @@ export class DemographicComponent
     ngOnDestroy(): void {
         this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     }
+
+
+    /*private getDocumentBasedJsonFormat() {
+        alert("testing well and good")
+        return new Promise((resolve, reject) => {
+            this.dataStorageService.getIdentityDocumentJson().subscribe((response) => {
+                console.log(response);
+
+                this.identityData = response["response"]["idSchema"]["identity"];
+                this.locationHeirarchy = [
+                    ...response["response"]["idSchema"]["locationHierarchy"],
+                ];
+                console.log(this.locationHeirarchy);
+
+                this.identityData.forEach((obj) => {
+
+                    if (
+                        obj.inputRequired === true &&
+                        obj.controlType !== null &&
+                        !(obj.controlType === "fileupload")
+                    ) {
+                        console.log("testing :"+obj.toString());
+                        this.uiFields.push(obj);
+                    }
+
+                    /!*  if (obj.controlType === "fileupload") {
+                          this.uiFields.push(obj);
+                      }*!/
+                });
+                this.dynamicFields = this.uiFields.filter(
+                    (fields) =>
+                        fields.controlType === "dropdown" && fields.fieldType === "dynamic"
+                );
+                alert()
+                console.log(this.dynamicFields);
+                this.setDropDownArrays();
+                this.setCheckBoxArrays()
+                this.setLocations();
+                this.setGender();
+                this.setResident();
+                this.setDynamicFieldValues();
+                resolve(true);
+            });
+        });
+    }*/
 }

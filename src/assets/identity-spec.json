@@ -14,9 +14,9 @@
       "identity": [
         {
           "id": "IDSchemaVersion",
-          "description": "ID Schema Version 1.0",
+          "description": "ID Schema Version 2.0",
           "labelName": {
-            "primary": "ID Schema Version 1.0"
+            "primary": "ID Schema Version 2.0"
           },
           "type": "number",
           "minimum": 0,
@@ -62,14 +62,8 @@
           "controlType": "textbox",
           "fieldType": "default",
           "inputRequired": true,
-          "validators": [
-            {
-              "type": "regex",
-              "validator": "^(?=.{1,50}$).*",
-              "arguments": []
-            }
-          ],
-          "required": true
+          "validators": [],
+          "required": false
         },
         {
           "id": "lastName",
@@ -88,7 +82,7 @@
               "arguments": []
             }
           ],
-          "required": true
+          "required": false
         },
         {
           "id": "suffix",
@@ -100,13 +94,7 @@
           "controlType": "textbox",
           "fieldType": "default",
           "inputRequired": true,
-          "validators": [
-            {
-              "type": "regex",
-              "validator": "^(?=.{1,50}$).*",
-              "arguments": []
-            }
-          ],
+          "validators": [],
           "required": true
         },
         {
@@ -210,14 +198,8 @@
           "controlType": "textbox",
           "fieldType": "dynamic",
           "inputRequired": true,
-          "validators": [
-            {
-              "validator": "^[a-zA-Z0-9]*$",
-              "arguments": [],
-              "type": "regex"
-            }
-          ],
-          "required": false
+          "validators":[],
+          "required": true
         },
         {
           "id": "region",
@@ -296,6 +278,46 @@
           "required": false
         },
         {
+          "id": "mobileno",
+          "description": "Mobile Number",
+          "labelName": {
+            "eng": "Mobile Number",
+            "ara": "Mobile Number"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "default",
+          "inputRequired": true,
+          "validators": [
+            {
+              "validator": "^[+]*([0-9]{1})([0-9]{9})$",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "required": false
+        },
+        {
+          "id": "email",
+          "description": "Email Address",
+          "labelName": {
+            "eng": "Email Address",
+            "ara": "Email Address"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "default",
+          "inputRequired": true,
+          "validators": [
+            {
+              "validator": "^[A-Za-z0-9_\\-]+(\\.[A-Za-z0-9_]+)*@[A-Za-z0-9_-]+(\\.[A-Za-z0-9_]+)*(\\.[a-zA-Z]{2,})$",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "required": false
+        },
+        {
           "id": "sameAsPermanent",
           "description": "Same as Permanent Address",
           "labelName": {
@@ -304,6 +326,53 @@
           "type": "simpleType",
           "controlType": "textbox",
           "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+
+
+
+
+        {
+          "id": "modeOfClaim",
+          "description": "Mode of Claiming",
+          "labelName": {
+            "eng": "Mode of Claiming",
+            "ara": "Mode of Claiming"
+          },
+          "type": "simpleType",
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+          "id": "registrationType",
+          "description": "Registration Type",
+          "labelName": {
+            "eng": "Registration Type ",
+            "ara": "Buong Pangalan",
+            "fra": "Nom complet"
+          },
+          "type": "simpleType",
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+          "id": "introducerCredentialID",
+          "description": "Credential ID of Introducer. This will hold the PSN/PCN/Registration ID of the introducer.",
+          "labelName": {
+            "eng": "Credential ID"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "bioAttributes": null,
           "validators": [],
           "required": true
         },
@@ -414,7 +483,7 @@
               "arguments": []
             }
           ],
-          "required": true
+          "required": false
         },
         {
           "id": "guardianLastName",
@@ -434,7 +503,7 @@
               "arguments": []
             }
           ],
-          "required": true
+          "required": false
         },
         {
           "id": "guardianSuffix",
@@ -456,75 +525,6 @@
           ],
           "required": false
         },
-        {
-          "id": "mobileno",
-          "description": "Mobile Number",
-          "labelName": {
-            "eng": "Mobile Number",
-            "ara": "Mobile Number"
-          },
-          "type": "simpleType",
-          "controlType": "textbox",
-          "fieldType": "default",
-          "inputRequired": true,
-          "validators": [
-            {
-              "validator": "^[+]*([0-9]{1})([0-9]{9})$",
-              "arguments": [],
-              "type": "regex"
-            }
-          ],
-          "required": false
-        },
-        {
-          "id": "email",
-          "description": "Email Address",
-          "labelName": {
-            "eng": "Email Address",
-            "ara": "Email Address"
-          },
-          "type": "simpleType",
-          "controlType": "textbox",
-          "fieldType": "default",
-          "inputRequired": true,
-          "validators": [
-            {
-              "validator": "^[A-Za-z0-9_\\-]+(\\.[A-Za-z0-9_]+)*@[A-Za-z0-9_-]+(\\.[A-Za-z0-9_]+)*(\\.[a-zA-Z]{2,})$",
-              "arguments": [],
-              "type": "regex"
-            }
-          ],
-          "required": false
-        },
-        {
-          "id": "modeOfClaim",
-          "description": "Mode of Claiming",
-          "labelName": {
-            "eng": "Mode of Claiming",
-            "ara": "Mode of Claiming"
-          },
-          "type": "simpleType",
-          "controlType": "dropdown",
-          "fieldType": "dynamic",
-          "inputRequired": true,
-          "validators": [],
-          "required": true
-        },
-        {
-          "id": "registrationType",
-          "description": "Registration Type",
-          "labelName": {
-            "eng": "Registration Type ",
-            "ara": "Buong Pangalan",
-            "fra": "Nom complet"
-          },
-          "type": "simpleType",
-          "controlType": "dropdown",
-          "fieldType": "dynamic",
-          "inputRequired": true,
-          "validators": [],
-          "required": true
-        },
 
         {
           "id": "supportingDocNumber1",
@@ -538,10 +538,10 @@
           "fieldType": "default",
           "inputRequired": true,
           "validators": [],
-          "required": true
+          "required": false
         },
         {
-          "id": "docCatOne",
+          "id": "supportingDocCatOne",
           "description": "Document Category 1",
           "labelName": {
             "eng": "Document Category 1",
@@ -552,9 +552,27 @@
           "fieldType": "dynamic",
           "inputRequired": true,
           "validators": [],
-          "required": true
+          "required": false
         },
+        {
+          "id": "supportingDoc1",
+          "description": "Supporting Category 1",
+          "labelName": {
+            "eng": "Supporting Document 1",
+            "ara": "Supporting Document 1"
+          },
+          "type": "simpleType",
 
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+
+
+          "inputRequired": true,
+          "validators": [],
+
+
+          "required": false
+        },
         {
           "id": "supportingDocNumber2",
           "description": "Number of Supporting Document 1",
@@ -567,10 +585,10 @@
           "fieldType": "default",
           "inputRequired": true,
           "validators": [],
-          "required": true
+          "required": false
         },
         {
-          "id": "docCatTwo",
+          "id": "supportingDocCatTwo",
           "description": "Document Category 2",
           "labelName": {
             "eng": "Document Category 2",
@@ -581,22 +599,30 @@
           "fieldType": "dynamic",
           "inputRequired": true,
           "validators": [],
-          "required": true
+          "required": false
         },
         {
-          "id": "introducerCredentialID",
-          "description": "Credential ID of Introducer. This will hold the PSN/PCN/Registration ID of the introducer.",
+          "id": "supportingDoc2",
+          "description": " Supporting Document Two",
           "labelName": {
-            "eng": "Credential ID"
+            "eng": "Supporting Document Two",
+            "ara": "Supporting Document Two"
           },
           "type": "simpleType",
-          "controlType": "textbox",
+
+          "controlType": "dropdown",
           "fieldType": "dynamic",
+
           "inputRequired": true,
-          "bioAttributes": null,
           "validators": [],
-          "required": true
+
+
+          "required": false
         }
+
+
+
+
       ]
     }
   },

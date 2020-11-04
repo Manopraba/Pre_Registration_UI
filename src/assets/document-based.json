@@ -1,0 +1,86 @@
+{
+  "id": null,
+  "version": null,
+  "responsetime": null,
+  "response": {
+    "idSchema": {
+      "locationHierarchy": [
+        "region",
+        "province",
+        "city",
+        "zone",
+        "postalCode"
+      ],
+      "identity": [
+        {
+          "id": "supportingDocNumber1",
+          "description": "Number of Supporting Document 1",
+          "labelName": {
+            "eng": "Document Number 1",
+            "ara": "Document Number 1"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "default",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+          "id": "SupportingDocCatOne",
+          "description": "Document Category 1",
+          "labelName": {
+            "eng": "Document Category 1",
+            "ara": "Document Category 1"
+          },
+          "type": "simpleType",
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+          "id": "supportingDocNumber2",
+          "description": "Number of Supporting Document 1",
+          "labelName": {
+            "eng": "Document Number 2",
+            "ara": "Document Number 2"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "default",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+            "id": "SupportingDocCatTwo",
+          "description": "Document Category 2",
+          "labelName": {
+            "eng": "Document Category 2",
+            "ara": "Document Category 2"
+          },
+          "type": "simpleType",
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "validators": [],
+          "required": true
+        },
+        {
+          "id": "introducerCredentialID",
+          "description": "Credential ID of Introducer. This will hold the PSN/PCN/Registration ID of the introducer.",
+          "labelName": {
+            "eng": "Credential ID"
+          },
+          "type": "simpleType",
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "inputRequired": true,
+          "bioAttributes": null,
+          "validators": [],
+          "required": true
+        }
+      ]
+    }}}
