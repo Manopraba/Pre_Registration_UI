@@ -57,13 +57,13 @@
 }
 
 .time-selection__title-card {
-  color: #ff4081;
+  color: #c84a07;
   padding: 0px;
   display: flex;
   align-items: center;
   white-space: nowrap;
   margin: 0px 2vw;
-  border-bottom: 1px solid #ff4081;
+  border-bottom: 1px solid #c84a07;
   border-radius: 0px;
   /* z-index:  -1; */
   position: relative;

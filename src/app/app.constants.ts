@@ -36,8 +36,8 @@ export const APPEND_URL = {
   gender: 'v1/masterdata/gendertypes',
   resident: 'v1/masterdata/individualtypes',
   transliteration: 'transliteration/transliterate',
-  //applicantType: 'v1/applicanttype/',
-  applicantType: 'v1/masterdata/',
+// applicantType: 'v1/applicanttype/',
+ applicantType: 'v1/masterdata/',
   validDocument: 'applicanttype/',
   getApplicantType: 'getApplicantType/',
   post_document: 'documents/',
@@ -192,15 +192,24 @@ export const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug
 export const controlTypeGender = 'gender';
 export const controlTypeResidenceStatus = 'residenceStatus';
 
-export const previewFields = ['region', 'province', 'city', 'zone','postalCode'];
+export const previewFields = ['region', 'province', 'city', 'zone','gender', 'modeOfClaim','bloodType','maritalStatus'];
 
-export const TRANSLITERATE_FIELDS = ['gender', 'modeOfClaim','registrationType','supportingDoc1','supportingDoc2','bloodType','maritalStatus',
+export const TRANSLITERATE_FIELDS = [
     "fullName", "middleName","lastName","sameAsPermanent",
-  "permanentAddressLine","placeOfBirth","introducerCredentialID","mobileno",
+ , "permanentAddressLine","placeOfBirth","mobileno",
   "suffix", "introducerFirstName","introducerMiddleName","introducerLastName","introducerSuffix",
   "guardianCredentialID","guardianFirstName","guardianMiddleName",
   "guardianLastName","guardianSuffix","modeOfClaim","registrationType",
-  "registrationType","supportingDocNumber1","supportingDocCatOne","supportingDocNumber2","supportingDocCatTwo",]
+  "registrationType","supportingDocNumber1",
+  "supportingDocNumber2"]
+/*export const TRANSLITERATE_FIELDS = [
+    "fullName", "middleName","lastName","sameAsPermanent",
+ , "permanentAddressLine","placeOfBirth","introducerCredentialID","mobileno",
+  "suffix", "introducerFirstName","introducerMiddleName","introducerLastName","introducerSuffix",
+  "guardianCredentialID","guardianFirstName","guardianMiddleName",
+  "guardianLastName","guardianSuffix","modeOfClaim","registrationType",
+  "registrationType","supportingDocNumber1",
+  "supportingDocNumber2"]*/
 
 /*
 export const previewFields = ['region', 'province', 'city', 'zone', 'gender', 'residenceStatus'];

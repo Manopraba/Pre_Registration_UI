@@ -32,28 +32,28 @@
 
 .preview__header {
   padding: 0;
-  color: #ff4081;
+  color: #DE0F29;
 }
 
 .preview__header-container {
   padding: 0;
-  border-bottom: 1px solid rgba(225, 82, 141, 1);
+  border-bottom: 1px solid rgb(222, 15, 41);
 }
 
 .preview__header-container hr {
   left: 0;
   width: 100%;
-  border: 1px solid #ff4081;
+  border: 1px solid #065aec;
   height: 1px;
-  color: #ff4081;
+  color: #065aec;
 }
 
 .preview__header hr {
   left: 0;
   width: 100%;
-  border: 1px solid #ff4081;
+  border: 1px solid #065aec;
   height: 1px;
-  color: #ff4081;
+  color: #065aec;
 }
 
 .preview__body-content-container {
@@ -76,7 +76,7 @@
 }
 
 .preview__footer {
-  color: #ff4081;
+  color: #065aec;
   padding: 0 2rem;
 }
 

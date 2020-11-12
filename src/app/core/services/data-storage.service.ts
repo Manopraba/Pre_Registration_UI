@@ -81,6 +81,7 @@ export class DataStorageService {
     getResidentDetails() {
         const url = this.BASE_URL + appConstants.APPEND_URL.resident;
         return this.httpClient.get(url);
+
     }
 
     /**
@@ -119,7 +120,7 @@ export class DataStorageService {
 
         const obj = new RequestModel(appConstants.IDS.newUser, identity);
 
-        console.log("print object"+obj);
+        console.log("print object"+JSON.stringify(obj));
         let url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.applicants;
         console.log("print add url"+url);
@@ -204,6 +205,7 @@ export class DataStorageService {
             "locations/" +
             localStorage.getItem("langCode")
         );
+
     }
 
     getLocationsHierarchyByLangCode(langCode: string, locCode: string) {
@@ -215,6 +217,7 @@ export class DataStorageService {
             "/" +
             langCode
         );
+
     }
 
     getAvailabilityData(registrationCenterId) {
@@ -245,6 +248,7 @@ export class DataStorageService {
         return this.configService.getConfigByKey(
             appConstants.CONFIG_KEYS.mosip_country_code
         );
+
     }
 
     /**
@@ -264,6 +268,7 @@ export class DataStorageService {
             appConstants.APPENDER +
             lang;
         return this.httpClient.get(url);
+
     }
 
     deleteFile(documentId, preRegId) {
@@ -385,12 +390,14 @@ export class DataStorageService {
     }
 
     getApplicantType(docuemntCategoryDto) {
+
         return this.httpClient.post(
             this.BASE_URL +
             appConstants.APPEND_URL.applicantType +
             appConstants.APPEND_URL.getApplicantType,
             docuemntCategoryDto
         );
+
     }
 
     getDocumentCategories(applicantCode) {
@@ -529,7 +536,7 @@ export class DataStorageService {
 
        const url = this.BASE_URL + appConstants.APPEND_URL.master_data + `dynamicfields?langCode=${langCode}`;
         console.log(url);
-        alert("printing dynamic url"+url);
+
 
         return this.httpClient.get(url);
     }

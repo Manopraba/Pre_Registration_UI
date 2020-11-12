@@ -448,7 +448,9 @@ export class FileUploadComponent implements OnInit, OnDestroy {
     DOCUMENT_CATEGORY_DTO = new RequestModel(
       appConstants.IDS.applicantTypeId,
       requestArray
+
     );
+    console.debug('testing document category'+JSON.stringify(DOCUMENT_CATEGORY_DTO));
 
     this.getDocumentCategories("008");
     localStorage.setItem(
@@ -459,6 +461,7 @@ export class FileUploadComponent implements OnInit, OnDestroy {
       .subscribe(
         (response) => {
           if (response[appConstants.RESPONSE]) {
+            console.log('print response'+response);
             localStorage.setItem(
               "applicantType",
               response["response"].applicantType.applicantTypeCode
@@ -466,7 +469,9 @@ export class FileUploadComponent implements OnInit, OnDestroy {
             this.getDocumentCategories(
               response["response"].applicantType.applicantTypeCode
             );
+
             this.setApplicantType(response);
+
           } else {
             this.displayMessage(
               this.fileUploadLanguagelabels.uploadDocuments.error,
@@ -476,6 +481,7 @@ export class FileUploadComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.displayMessage("Error", this.errorlabels.error, error);
+
         }
       );
     this.subscriptions.push(subs);

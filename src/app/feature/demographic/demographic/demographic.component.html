@@ -17,120 +17,121 @@
                     *ngIf="primaryuserForm"
             >
                 <h4>{{ "demographic.language" | translate }}</h4>
+
                 <ng-container *ngFor="let field of uiFields">
                     <div id="data" class="Column1" style="float:left;width:850px;">
-                    <div>
-                        <ng-container *ngIf="field.controlType === 'textbox'">
-                            <mat-form-field [ngClass]="'text-field'">
-                                <mat-label>{{ field.labelName[primaryLang] }}
-                                   </mat-label>
-                                <input
-                                        matInput
-                                        formControlName="{{ field.id }}"
+                        <div>
+                            <ng-container *ngIf="field.controlType === 'textbox'" oncopy="return false" onpaste="return false">
+                                <mat-form-field [ngClass]="'text-field'">
+                                    <mat-label>{{ field.labelName[primaryLang] }}
+                                    </mat-label>
+                                    <input
+                                            matInput
+                                            formControlName="{{ field.id }}"
 
 
-                                        (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
-                                        (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
-                                        #keyboardRef
-                                        #input
-                                />
-                            </mat-form-field>
-                        </ng-container>
-                        <ng-container *ngIf="field.controlType === 'checkbox'">
-                            <mat-form-field  [ngClass]="'checkbox-field'">
+                                            (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                            (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                            #keyboardRef
+                                            #input
+                                    />
+                                </mat-form-field>
+                            </ng-container>
+                            <!-- <ng-container *ngIf="field.controlType === 'checkbox'">
+                                 <mat-form-field  [ngClass]="'checkbox-field'">
 
-                                <mat-checkbox>
+                                     <mat-checkbox>
 
-                                <mat-label>{{ field.labelName[primaryLang] }}
-                                </mat-label>
-                                </mat-checkbox>
-                                <input  onclick="permanent(this.userForm)"
-                                        matInput
-                                        formControlName="{{ field.id }}"
+                                     <mat-label>{{ field.labelName[primaryLang] }}
+                                     </mat-label>
+                                     </mat-checkbox>
+                                     <input  onclick="permanent(this.userForm)"
+                                             matInput
+                                             formControlName="{{ field.id }}"
 
-                                        (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
-                                        (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
-                                        #keyboardRef
-                                        #input
-                                />
-                            </mat-form-field>
-
-
-
-                        </ng-container>
+                                             (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                             (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
+                                                 #keyboardRef
+                                             #input
+                                     />
+                                 </mat-form-field>
 
 
 
+                             </ng-container>-->
 
 
 
-                        <ng-container *ngIf="field.controlType === 'date'">
 
-                            <br/>
-                            <mat-label>{{ field.labelName[primaryLang] }}</mat-label>
-                            <div class="user__age-or-date">
-                                <div class="user__date">
-                                    <mat-form-field>
-                                        <input class="mat-input-element[_ngcontent-c10]"
 
-                                               matInput
-                                               placeholder="{{ 'demographic.date_dd' | translate }}"
-                                               #dd
-                                               [value]="date"
-                                               (focusout)="onDOBChange()"
-                                        />
-                                    </mat-form-field>
-                                    <mat-form-field>
-                                        <input
-                                                matInput
-                                                placeholder="{{ 'demographic.date_mm' | translate }}"
-                                                [value]="month"
-                                                #mm
-                                                (focusout)="onDOBChange()"
-                                        />
-                                    </mat-form-field>
-                                    <mat-form-field>
-                                        <input
-                                                matInput
-                                                placeholder="{{ 'demographic.date_yyyy' | translate }}"
-                                                [value]="year"
-                                                #yyyy
-                                                (focusout)="onDOBChange()"
-                                        />
-                                    </mat-form-field>
-                                </div>
-                                <div class="user__pref">
-                                    {{ "demographic.text_or" | translate }}
-                                </div>
-                                <div class="user__age">
-                                    <mat-form-field>
-                                        <input
-                                                matInput
-                                                tabindex="-1"
-                                                placeholder="{{ 'demographic.label_age' | translate }}"
-                                                [value]="currentAge"
-                                                #age
-                                                (focusout)="onAgeChange()"
-                                        />
-                                    </mat-form-field>
-                                    <div class="user__age--years">
-                                        {{ "demographic.text_years" | translate }}
+
+                            <ng-container *ngIf="field.controlType === 'date'">
+
+                                <br/>
+                                <mat-label>{{ field.labelName[primaryLang] }}</mat-label>
+                                <div class="user__age-or-date">
+                                    <div class="user__date">
+                                        <mat-form-field>
+                                            <input class="mat-input-element[_ngcontent-c10]"
+
+                                                   matInput
+                                                   placeholder="{{ 'demographic.date_dd' | translate }}"
+                                                   #dd
+                                                   [value]="date"
+                                                   (focusout)="onDOBChange()"
+                                            />
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <input
+                                                    matInput
+                                                    placeholder="{{ 'demographic.date_mm' | translate }}"
+                                                    [value]="month"
+                                                    #mm
+                                                    (focusout)="onDOBChange()"
+                                            />
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <input
+                                                    matInput
+                                                    placeholder="{{ 'demographic.date_yyyy' | translate }}"
+                                                    [value]="year"
+                                                    #yyyy
+                                                    (focusout)="onDOBChange()"
+                                            />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="user__pref">
+                                        {{ "demographic.text_or" | translate }}
+                                    </div>
+                                    <div class="user__age">
+                                        <mat-form-field>
+                                            <input
+                                                    matInput
+                                                    tabindex="-1"
+                                                    placeholder="{{ 'demographic.label_age' | translate }}"
+                                                    [value]="currentAge"
+                                                    #age
+                                                    (focusout)="onAgeChange()"
+                                            />
+                                        </mat-form-field>
+                                        <div class="user__age--years">
+                                            {{ "demographic.text_years" | translate }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div
-                                    class="mat-error ng-star-inserted user__dob__error"
-                                    *ngIf="
+                                <div
+                                        class="mat-error ng-star-inserted user__dob__error"
+                                        *ngIf="
                   (userForm.get(field.id).touched &&
                     userForm.get(field.id).hasError('incorrect')) ||
                   (userForm.get(field.id).touched &&
                     !userForm.get(field.id).valid)
                 "
-                            >
-                                {{ "demographic.validation.DOB_validation" | translate }}
-                            </div>
-                        </ng-container>
-                    </div>
+                                >
+                                    {{ "demographic.validation.DOB_validation" | translate }}
+                                </div>
+                            </ng-container>
+                        </div>
                     </div>
 
                     <div id="Column2" style="float:left;width:850px;">
@@ -138,7 +139,7 @@
                         <ng-container *ngIf="field.controlType === 'dropdown'">
                             <mat-form-field [ngClass]="'dropdown-field'">
                                 <mat-label>{{ field.labelName[primaryLang] }}
-                                    </mat-label>
+                                </mat-label>
                                 <mat-select
                                         formControlName="{{ field.id }}"
                                         (focus)="dropdownApiCall(field)"
@@ -198,27 +199,27 @@
         </form>
 
 
-</div>
+    </div>
 
-<!--  </div>-->
-<div class="user__buttons">
+    <!--  </div>-->
+    <div class="user__buttons">
 
-    <button
-            *ngIf="!showPreviewButton"
-            class="user__btn"
-            type="button"
-            [disabled]="!dataUploadComplete"
-            (click)="onSubmit()"
-    >
-        {{ "demographic.action_continue" | translate }}
-    </button>
-    <button
-            *ngIf="showPreviewButton"
-            class="user__btn"
-            type="button"
-            [disabled]="!dataUploadComplete"
-            (click)="onSubmit()"
-    >
-        {{ "demographic.action_preview" | translate }}
-    </button>
-</div>
+        <button
+                *ngIf="!showPreviewButton"
+                class="user__btn"
+                type="button"
+                [disabled]="!dataUploadComplete"
+                (click)="onSubmit()"
+        >
+            {{ "demographic.action_continue" | translate }}
+        </button>
+        <button
+                *ngIf="showPreviewButton"
+                class="user__btn"
+                type="button"
+                [disabled]="!dataUploadComplete"
+                (click)="onSubmit()"
+        >
+            {{ "demographic.action_preview" | translate }}
+        </button>
+    </div>

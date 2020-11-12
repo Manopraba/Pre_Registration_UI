@@ -1,6 +1,7 @@
 import { DemoIdentityModel } from './demo.identity.modal';
-import { IdentityModel } from './identity.modal';
+
 import { AttributeModel } from './attribute.modal';
+import {IdentityModel} from "./identity.modal";
 
 describe('Applicant interface check', () => {
   it('should conform to demo interface', () => {
@@ -15,13 +16,10 @@ describe('Applicant interface check', () => {
       [attributeModel],
       [attributeModel],
       [attributeModel],
-      [attributeModel],
-      [attributeModel],
-      [attributeModel],
-      'string',
-      'string',
+        [attributeModel],
       'string',
       'string'
+
     );
     const applicant = new DemoIdentityModel(identity);
     expect(typeof applicant.identity).toEqual('object');

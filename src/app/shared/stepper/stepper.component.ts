@@ -108,13 +108,13 @@ export class StepperComponent implements OnInit, OnChanges {
             this.classes.step2.p = ['complete'];
             this.classes.step2.icon = ['inline-icon', 'inline-icon-background-complete'];
             this.classes.step2.line = ['progress', 'progress-complete'];
-            this.classes.step3.p = ['active'];
+            this.classes.step3.p = ['complete'];
             this.classes.step3.icon = ['inline-icon', 'inline-icon-background-incomplete'];
             this.classes.step3.line = ['progress', 'progress-active'];
-            this.classes.step4.p = ['incomplete'];
+            this.classes.step4.p = ['complete'];
             this.classes.step4.icon = ['inline-icon', 'inline-icon-background-incomplete'];
             this.classes.step4.line = ['progress', 'progress-incomplete'];
-            this.classes.step5.p = ['incomplete'];
+            this.classes.step5.p = ['active'];
             this.classes.step5.icon = ['inline-icon', 'inline-icon-background-incomplete'];
         }
     }

@@ -44,14 +44,14 @@
 }
 
 .ack__header {
-  color: #ff4081;
+  color: #DE0F29;
   width: 100%;
   font-size: 1rem;
 }
 
 .ack__header-container {
   padding: 0;
-  border-bottom: 1px solid #ff4081;
+  border-bottom: 1px solid #DE0F29;
   z-index: -1;
   position: relative;
 }
@@ -59,18 +59,18 @@
 .ack__header-container hr {
   left: 0;
   width: 100%;
-  border: 1px solid #ff4081;
+  border: 1px solid #DE0F29;
   height: 1px;
-  color: #ff4081;
+  color: #DE0F29;
   margin-top: 36.5px;
 }
 
 .ack__header hr {
   left: 0;
   width: 100%;
-  border: 1px solid #ff4081;
+  border: 1px solid #DE0F29;
   height: 1px;
-  color: #ff4081;
+  color: #DE0F29;
   margin-top: -11.5px !important;
 }
 

@@ -62,7 +62,6 @@
           "group": null,
           "required": true
         },
-
         {
           "id": "middleName",
           "description": "Middle Name of Registrant",
@@ -280,8 +279,8 @@
           "id": "permanentAddressLine",
           "description": "Permanent Address of Registrant",
           "labelName": {
-            "eng": "Permanent Address Line ",
-            "ara": "Permanent Address Line "
+            "eng": "Address",
+            "ara": "Permanent Address"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -300,6 +299,29 @@
           "required": true
         },
 
+        {
+          "id": "presentAddressLine",
+          "description": "Permanent Address of Registrant",
+          "labelName": {
+            "eng": "Present Address",
+            "ara": "Present Address"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": null,
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": true
+        },
         {
           "id": "region",
           "description": "region",
@@ -516,6 +538,31 @@
           "group": null,
           "required": true
         },
+        {
+          "id": "registrationType",
+          "description": "Registration Type",
+          "labelName": {
+            "eng": "Registration Type ",
+            "ara": "Buong Pangalan",
+            "fra": "Nom complet"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "dropdown",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": null,
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": true
+        },
+
 
 
         {

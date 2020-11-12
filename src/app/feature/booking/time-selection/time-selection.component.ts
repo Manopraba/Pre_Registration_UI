@@ -220,7 +220,6 @@ export class TimeSelectionComponent
     }
 
     cardSelected(index: number): void {
-        //alert("selected time")
 
         this.selectedCard = index;
         this.canAddApplicant(
@@ -521,6 +520,7 @@ export class TimeSelectionComponent
                                 );
                             });
                             this.bookingService.setSendNotification(true);
+
                             const url = Utils.getURL(this.router.url, "summary", 3);
                             if (this.router.url.includes("multiappointment")) {
                                 this.router.navigateByUrl(

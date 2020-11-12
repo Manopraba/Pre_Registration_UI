@@ -265,7 +265,7 @@ export class PreviewComponent implements OnInit {
         if(!(field === appConstants.controlTypeResidenceStatus || field === appConstants.controlTypeGender)){
 
           element.name = this.locCodeToName(element.value, element.language);
-          alert(''+element.name +this.locCodeToName(element.value, element.language) )
+
         }
         else if(field === appConstants.controlTypeResidenceStatus){
           this.residenceStatus.forEach(status => {
@@ -368,15 +368,18 @@ export class PreviewComponent implements OnInit {
       this.primaryLocations.forEach((loc) => {
         if (loc.code === locationCode) {
           locationName = loc.name;
+
         }
       });
     } else {
       this.secondaryLocations.forEach((loc) => {
         if (loc.code === locationCode) {
           locationName = loc.name;
+
         }
       });
     }
+
     return locationName;
   }
 

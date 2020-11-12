@@ -13,18 +13,18 @@ export class IdentityModel {
     public fullName: AttributeModel[],
     public dateOfBirth: string,
     public gender: AttributeModel[],
-   // public addressLine1: AttributeModel[],
+
     public residenceStatus: AttributeModel[],
-  //  public addressLine2: AttributeModel[],
-    //public addressLine3: AttributeModel[],
-    public permanentAddressLine: string,
+
+
     public region: AttributeModel[],
     public province: AttributeModel[],
     public city: AttributeModel[],
     public zone: AttributeModel[],
-    public postalCode: string,
+    public postalCode: AttributeModel[],
     public phone: string,
     public email: string,
-    public referenceIdentityNumber: string
+    public referenceIdentityNumber: string,
+  public permanentAddressLine: string,
   ) {}
 }

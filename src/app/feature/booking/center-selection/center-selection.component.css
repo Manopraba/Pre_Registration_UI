@@ -55,7 +55,7 @@
   margin: 5px 2vw;
 }
 .center-selection__title-card {
-  color: #ff4081;
+  color: #c84a07;
   padding: 0;
   display: flex;
   align-items: center;
@@ -194,7 +194,7 @@ input[type='radio'] {
   width: 35px;
   height: 35px;
   background-color: #f4f4f4;
-  border: 1px solid #fd518c;
+  border: 1px solid #c84a07;
   border-radius: 0;
   opacity: 100%;
   line-height: 30px;
@@ -214,7 +214,7 @@ input[type='radio'] {
 .search-cancel-btn {
   width: 35px;
   height: 40px;
-  background-color: #fd518c;
+  background-color: #c84a07;
   border-radius: 0;
   opacity: 100%;
   text-transform: uppercase;

@@ -45,13 +45,13 @@
             type="button"
             (click)="clickOnButton(i)"
             [disabled]="
-              (document.code === 'POA' && sameAsselected) ||
+              (document.code === 'SDO' && sameAsselected) ||
               !document.selectedDocName ||
               document.selectedDocName === ''
             "
           />
         </span>
-        <span *ngIf="document.code === 'POA'">
+        <span *ngIf="document.code === 'SDO'">
           <span *ngIf="allApplicants.length > 1"> {{ 'documents.OR' | translate }}</span>
           <span *ngIf="allApplicants.length > 1">
             <mat-form-field class="file-upload__or">

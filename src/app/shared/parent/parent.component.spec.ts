@@ -74,6 +74,7 @@ describe('ParentComponent', () => {
   });
 
   it('should return Acknowledgement based on url', () => {
+
     const router = TestBed.get(Router);
     router.url = '/acknowledgement';
     component.onActivate({});
@@ -81,6 +82,7 @@ describe('ParentComponent', () => {
   });
 
   it('should return Preview based on url', () => {
+
     const router = TestBed.get(Router);
     router.url = '/preview';
     component.onActivate({});

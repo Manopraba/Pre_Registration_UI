@@ -66,7 +66,7 @@ export class DemographicComponent
     keyboardLang = appConstants.virtual_keyboard_languages[this.primaryLang];
     keyboardSecondaryLang =
         appConstants.virtual_keyboard_languages[this.secondaryLang];
-   /* using Check box*/
+    /* using Check box*/
 
 
     files: FilesModel;
@@ -225,6 +225,19 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     async ngOnInit() {
+        //changed by parameswari
+  /*  public userForm: FormGroup = this.fb.group({
+            sendingAddress: this.fb.group({
+                street: '',
+                city: '',
+                country: ''
+            }),
+            billingAddress: this.fb.group({
+                street: '',
+                city: '',
+                country: ''
+            })
+        });*/
         this.initialization();
         await this.getIdentityJsonFormat();
         this.config = this.configService.getConfig();
@@ -239,7 +252,10 @@ export class DemographicComponent
         await this.setFormControlValues();
         if (!this.dataModification) {
             if (this.isConsentMessage) this.consentDeclaration();
+
         }
+
+
     }
 
     /**
@@ -368,7 +384,8 @@ export class DemographicComponent
                 this.locationHeirarchy = [
                     ...response["response"]["idSchema"]["locationHierarchy"],
                 ];
-                console.log(this.locationHeirarchy);
+                console.log('testing for zone'+this.locationHeirarchy);
+
 
                 this.identityData.forEach((obj) => {
 
@@ -515,64 +532,14 @@ export class DemographicComponent
                 const parentLocation = this.locationHeirarchy[location - 1];
                 let locationCode = this.userForm.get(`${parentLocation}`).value;
                 this.loadLocationData(locationCode, controlObject.id);
+
             }
         }
-        /*this.uiFields.forEach((control) => {
 
-            if (
-                control.id !== "registrationType"
-
-            ) {
-                this.getDocumentBasedJsonFormat();
-                alert("document based+getDocumentBasedJsonFormat")
-                }
-
-        })
-
-         if( this.reistrationType=='Introducer-based')
-
-        {alert("Introducer");
-            this.getIntroduceBasedJsonFormat();
-        }
-*/
 
     }
 
-   /* async getIntroduceBasedJsonFormat() {
-        alert("getIntroduceBasedJsonFormat");
-        return new Promise((resolve, reject) => {
-            this.dataStorageService.getIdentityIntroduceJson().subscribe((response) => {
-                console.log(response);
 
-                this.identityData = response["response"]["idSchema"]["identity"];
-
-
-                this.identityData.forEach((obj) => {
-
-                   {
-                        console.log("testing :"+obj.toString());
-                        this.uiFields.push(obj);
-                    }
-
-                  /!*  if (obj.controlType === "fileupload") {
-                        this.uiFields.push(obj);
-                    }*!/
-                });
-                this.dynamicFields = this.uiFields.filter(
-                    (fields) =>
-                        fields.controlType === "dropdown" && fields.fieldType === "dynamic"
-                );
-                console.log(this.dynamicFields);
-                this.setDropDownArrays();
-                this.setCheckBoxArrays()
-               /!* this.setLocations();
-                this.setGender();
-                this.setResident();*!/
-                this.setDynamicFieldValues();
-                resolve(true);
-            });
-        });
-    }*/
 
     /**
      * @description this method will copy dropdown values from its
@@ -1329,18 +1296,13 @@ export class DemographicComponent
         });
         if (this.userForm.valid) {
             const identity = this.createIdentityJSONDynamic();
-
             const request = this.createRequestJSON(identity);
-
             console.log("TESTING", request);
-
             const responseJSON = this.createResponseJSON(identity);
-            console.log("create resposejson"+responseJSON);
-
-            this.dataUploadComplete = false;
+          this.dataUploadComplete = false;
 
             if (this.dataModification) {
-                alert("testing modification" +request);
+
                 this.subscriptions.push(
 
                     this.dataStorageService.updateUser(request, this.preRegId).subscribe(
@@ -1370,7 +1332,7 @@ export class DemographicComponent
                     )
                 );
             } else {
-alert("add user");
+
                 this.subscriptions.push(
                     this.dataStorageService.addUser(request).subscribe(
                         (response) => {
@@ -1389,14 +1351,15 @@ alert("add user");
                                         ] === appConstants.ERROR_CODES.invalidPin
                                 ) {
                                     console.log(response);
-                                    alert("add user using error");
+
                                     message = this.formValidation(response);
                                 } else message = this.errorlabels.error;
                                 this.onError(message, "");
-                                alert("add user" + this.errorlabels.error);
+
                                 return;
                             } else {
-                                alert("add user" + this.preRegId);
+
+
                                 this.preRegId =
                                     response[appConstants.RESPONSE].preRegistrationId;
                             }
@@ -1404,12 +1367,13 @@ alert("add user");
                             this.onSubmission();
                         },
                         (error) => {
-                            alert("add error");
+
                             this.loggerService.error(error);
                             this.onError(this.errorlabels.error, error);
                         }
                     )
                 );
+
             }
         }
     }
@@ -1421,6 +1385,7 @@ alert("add user");
         this.userForm.controls[attr].setErrors({
             incorrect: true,
         });
+      //  alert('testing'+message)
         return message;
     }
 
@@ -1430,7 +1395,6 @@ alert("add user");
      * @memberof DemographicComponent
      */
     onSubmission() {
-        alert("add  submission");
         this.canDeactivateFlag = false;
         this.checked = true;
         this.dataUploadComplete = true;
@@ -1570,7 +1534,7 @@ alert("add user");
      * @memberof DemographicComponent
      */
     private createResponseJSON(identity) {
-        alert("testing for create response json")
+
         let preRegistrationId = "";
         let createdBy = this.loginId;
         let createdDateTime = Utils.getCurrentDate();
@@ -1597,6 +1561,7 @@ alert("add user");
     hasDobChanged() {
         const currentDob = this.user.request.demographicDetails.identity
             .dateOfBirth;
+
         const changedDob = this.userForm.controls["dateOfBirth"].value;
         const currentDobYears = this.calculateAge(currentDob);
         const changedDobYears = this.calculateAge(changedDob);
@@ -1606,10 +1571,10 @@ alert("add user");
                 (currentDobYears < ageToBeAdult && changedDobYears < ageToBeAdult) ||
                 (currentDobYears > ageToBeAdult && changedDobYears > ageToBeAdult)
             ) {
-                alert("dateof birth validation")
+
                 this.showPreviewButton = true;
             } else {
-                alert("dateof birth  error validation")
+
                 this.showPreviewButton = false;
                 localStorage.setItem("modifyUserFromPreview", "false");
             }
@@ -1696,7 +1661,7 @@ alert("add user");
 
 
     /*private getDocumentBasedJsonFormat() {
-        alert("testing well and good")
+
         return new Promise((resolve, reject) => {
             this.dataStorageService.getIdentityDocumentJson().subscribe((response) => {
                 console.log(response);

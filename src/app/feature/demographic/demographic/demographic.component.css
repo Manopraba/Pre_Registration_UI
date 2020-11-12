@@ -40,10 +40,10 @@
 .user header {
   margin: 0;
   font-weight: bold;
-  color: #de6e32;
+  color: #DE0F29;
 }
 
-hr { background-color: #065aec; height: 1px; border: 0; }
+hr { background-color: #DE0F29; height: 1px; border: 0; }
 
 .user hr {
   border-top: .0px solid #ff4040;

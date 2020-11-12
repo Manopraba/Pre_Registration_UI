@@ -7,7 +7,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1jBKoTMhsr2CJHZzhp6Bk7UFSq4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,8 +19,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../paramu/angular/andularproject/MyFirstAngularApp" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="D:\Parameswari\Phillpines\Pre_Registration_UI\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
@@ -50,10 +57,45 @@
       <option name="presentableId" value="Default" />
       <updated>1603272219485</updated>
       <workItem from="1603272220557" duration="2337000" />
+      <workItem from="1604463706952" duration="27246000" />
+      <workItem from="1604548019525" duration="152308000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="563" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604552412660">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="563" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.860@0.0.1600.860" timestamp="1604552412660" />
+    <state x="580" y="184" key="FileChooserDialogImpl" timestamp="1605076864390">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="580" y="184" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1605076864390" />
+    <state x="404" y="40" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604066326084">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="404" y="40" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.860@0.0.1600.860" timestamp="1604066326084" />
+    <state x="506" y="163" width="587" height="564" key="find.popup" timestamp="1605098817347">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="506" y="163" width="587" height="564" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1605098817347" />
+    <state x="643" y="200" key="refactoring.ChangeSignatureDialog" timestamp="1604491082544">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="643" y="200" key="refactoring.ChangeSignatureDialog/0.0.1600.860@0.0.1600.860" timestamp="1604491082544" />
+    <state x="456" y="190" key="run.anything.popup" timestamp="1605091251229">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="190" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1605091251229" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1604901195242">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1604901195242" />
   </component>
 </project>
