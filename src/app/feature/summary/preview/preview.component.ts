@@ -388,6 +388,7 @@ export class PreviewComponent implements OnInit {
       const countryCode = this.configService.getConfigByKey(
           appConstants.CONFIG_KEYS.mosip_country_code
       );
+      alert("testing get location"+JSON.stringify(countryCode))
       this.dataStorageService
           .getLocationsHierarchyByLangCode(langCode, countryCode)
           .subscribe((response) => {

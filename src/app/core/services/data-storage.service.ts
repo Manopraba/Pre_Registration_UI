@@ -121,6 +121,7 @@ export class DataStorageService {
         const obj = new RequestModel(appConstants.IDS.newUser, identity);
 
         console.log("print object"+JSON.stringify(obj));
+
         let url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.applicants;
         console.log("print add url"+url);
@@ -209,6 +210,7 @@ export class DataStorageService {
     }
 
     getLocationsHierarchyByLangCode(langCode: string, locCode: string) {
+
         return this.httpClient.get(
             this.BASE_URL +
             appConstants.APPEND_URL.master_data +
@@ -245,6 +247,9 @@ export class DataStorageService {
      * @memberof DataStorageService
      */
     getLocationMetadataHirearchy() {
+alert("testing log"+this.configService.getConfigByKey(
+            appConstants.CONFIG_KEYS.mosip_country_code
+        ));
         return this.configService.getConfigByKey(
             appConstants.CONFIG_KEYS.mosip_country_code
         );
@@ -260,6 +265,7 @@ export class DataStorageService {
      * @memberof DataStorageService
      */
     getLocationImmediateHierearchy(lang: string, location: string) {
+
         const url =
             this.BASE_URL +
             appConstants.APPEND_URL.location +
@@ -267,6 +273,7 @@ export class DataStorageService {
             location +
             appConstants.APPENDER +
             lang;
+        alert("getLocationImmediateHierearchy"+url)
         return this.httpClient.get(url);
 
     }

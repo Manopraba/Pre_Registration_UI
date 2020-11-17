@@ -1,3 +1,4 @@
+
 <div class="spinner" *ngIf="!primaryuserForm && !hasError">
     <mat-spinner></mat-spinner>
 </div>
@@ -21,8 +22,10 @@
                 <ng-container *ngFor="let field of uiFields">
                     <div id="data" class="Column1" style="float:left;width:850px;">
                         <div>
-                            <ng-container *ngIf="field.controlType === 'textbox'" oncopy="return false" onpaste="return false">
-                                <mat-form-field [ngClass]="'text-field'">
+                            <ng-container *ngIf="field.controlType === 'textbox'"
+                                          >
+                                <mat-form-field [ngClass]="'text-field'"  type="text" class="txtbox"  maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                onDrag="return false" onDrop="return false" onPaste="return false">
                                     <mat-label>{{ field.labelName[primaryLang] }}
                                     </mat-label>
                                     <input
@@ -37,6 +40,7 @@
                                     />
                                 </mat-form-field>
                             </ng-container>
+
                             <!-- <ng-container *ngIf="field.controlType === 'checkbox'">
                                  <mat-form-field  [ngClass]="'checkbox-field'">
 
@@ -72,7 +76,8 @@
                                 <div class="user__age-or-date">
                                     <div class="user__date">
                                         <mat-form-field>
-                                            <input class="mat-input-element[_ngcontent-c10]"
+                                            <input class="mat-input-element[_ngcontent-c10]"  maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                   onDrag="return false" onDrop="return false" onPaste="return false"
 
                                                    matInput
                                                    placeholder="{{ 'demographic.date_dd' | translate }}"
@@ -83,7 +88,8 @@
                                         </mat-form-field>
                                         <mat-form-field>
                                             <input
-                                                    matInput
+                                                    matInput onkeypress='validate(event)' maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                    onDrag="return false" onDrop="return false" onPaste="return false"
                                                     placeholder="{{ 'demographic.date_mm' | translate }}"
                                                     [value]="month"
                                                     #mm
@@ -93,6 +99,8 @@
                                         <mat-form-field>
                                             <input
                                                     matInput
+                                                    onkeypress='validate(event)' maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                    onDrag="return false" onDrop="return false" onPaste="return false"
                                                     placeholder="{{ 'demographic.date_yyyy' | translate }}"
                                                     [value]="year"
                                                     #yyyy
@@ -106,7 +114,8 @@
                                     <div class="user__age">
                                         <mat-form-field>
                                             <input
-                                                    matInput
+                                                    matInput maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                    onDrag="return false" onDrop="return false" onPaste="return false"
                                                     tabindex="-1"
                                                     placeholder="{{ 'demographic.label_age' | translate }}"
                                                     [value]="currentAge"
@@ -136,7 +145,7 @@
 
                     <div id="Column2" style="float:left;width:850px;">
 
-                        <ng-container *ngIf="field.controlType === 'dropdown'">
+                        <ng-container *ngIf="field.controlType === 'dropdown'" >
                             <mat-form-field [ngClass]="'dropdown-field'">
                                 <mat-label>{{ field.labelName[primaryLang] }}
                                 </mat-label>
@@ -198,6 +207,7 @@
             </div>
         </form>
 
+    </div>
 
     </div>
 

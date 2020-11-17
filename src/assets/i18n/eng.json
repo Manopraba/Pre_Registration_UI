@@ -264,7 +264,7 @@
   "login": {
 
     "sub_text": "Pre-register for",
-    "sub_text_UID": "Unique Identification Number",
+    "sub_text_UID": "PhilSys Number",
     "label_email_num": "Email ID or Phone Number",
     "label_otp": "Enter OTP",
     "action_send": "Send OTP",

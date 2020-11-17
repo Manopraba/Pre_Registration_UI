@@ -192,16 +192,13 @@ export const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug
 export const controlTypeGender = 'gender';
 export const controlTypeResidenceStatus = 'residenceStatus';
 
-export const previewFields = ['region', 'province', 'city', 'zone','gender', 'modeOfClaim','bloodType','maritalStatus'];
+export const previewFields = ['country', 'province', 'city', 'zone','gender', 'modeOfClaim','bloodType','maritalStatus'];
 
 export const TRANSLITERATE_FIELDS = [
-    "fullName", "middleName","lastName","sameAsPermanent",
- , "permanentAddressLine","placeOfBirth","mobileno",
-  "suffix", "introducerFirstName","introducerMiddleName","introducerLastName","introducerSuffix",
-  "guardianCredentialID","guardianFirstName","guardianMiddleName",
-  "guardianLastName","guardianSuffix","modeOfClaim","registrationType",
-  "registrationType","supportingDocNumber1",
-  "supportingDocNumber2"]
+    "fullName", "middleName","lastName","suffix","sameAsPermanent","postalCode",
+ , "permanentAddressLine1OC","permanentAddressLine2OC","permanentAddressLine3OC",
+  "permanentAddressLine","placeOfBirth","mobileno", "modeOfClaim",
+  ]
 /*export const TRANSLITERATE_FIELDS = [
     "fullName", "middleName","lastName","sameAsPermanent",
  , "permanentAddressLine","placeOfBirth","introducerCredentialID","mobileno",

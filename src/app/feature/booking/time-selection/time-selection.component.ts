@@ -180,7 +180,7 @@ export class TimeSelectionComponent
                 user.request.demographicDetails.identity.fullName[0].value;
             //nameList.fullNameSecondaryLang =
             // user.request.demographicDetails.identity.fullName[1].value;
-            nameList.postalCode = user.request.demographicDetails.identity.postalCode;
+            nameList.postalCode = user.request.demographicDetails.identity.postalcode;
             nameList.registrationCenter = regCenterInfo;
             this.names.push(nameList);
             this.temp.push(nameList);

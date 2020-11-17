@@ -5,18 +5,19 @@
   "response": {
     "idSchema": {
       "locationHierarchy": [
-        "region",
+        "country",
         "province",
         "city",
         "zone",
-        "postalCode"
+        "postalcode"
+
       ],
       "identity": [
         {
           "id": "IDSchemaVersion",
-          "description": "ID Schema Version 2.0",
+          "description": "ID Schema Version 1.0",
           "labelName": {
-            "primary": "ID Schema Version 2.0"
+            "primary": "ID Schema Version 1.0"
           },
           "type": "number",
           "minimum": 0,
@@ -38,7 +39,7 @@
           "id": "fullName",
           "description": "First Name of Registrant",
           "labelName": {
-            "eng": "First Name *"
+            "eng": "First Name"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -56,7 +57,7 @@
             }
           ],
           "bioAttributes": null,
-          "requiredOn": null,
+          "requiredOn": [],
           "subType": "none",
           "contactType": null,
           "group": null,
@@ -85,11 +86,35 @@
           "group": null,
           "required": false
         },
+
         {
           "id": "lastName",
           "description": "Last Name of Registrant",
           "labelName": {
             "eng": "Last Name"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "default",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": null,
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
+        },
+
+        {
+          "id": "suffix",
+          "description": "Suffix of Registrant",
+          "labelName": {
+            "eng": "Suffix"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -111,35 +136,14 @@
           "subType": "none",
           "contactType": null,
           "group": null,
-          "required": false
-        },
-        {
-          "id": "suffix",
-          "description": "Suffix of Registrant",
-          "labelName": {
-            "eng": "Suffix *"
-          },
-          "type": "simpleType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "textbox",
-          "fieldType": "default",
-          "format": null,
-          "fieldCategory": null,
-          "inputRequired": true,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "none",
-          "contactType": null,
-          "group": null,
           "required": true
         },
+
         {
           "id": "gender",
           "description": "Sex of Registrant",
           "labelName": {
-            "eng": "Sex *"
+            "eng": "Sex"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -157,13 +161,14 @@
           "group": null,
           "required": true
         },
+
         {
           "id": "dateOfBirth",
           "description": "Date of Birth",
           "labelName": {
-            "eng": "Date of Birth *"
+            "eng": "Date of Birth"
           },
-          "type": "simpleType",
+          "type": "string",
           "minimum": 0,
           "maximum": 0,
           "controlType": "date",
@@ -185,6 +190,7 @@
           "group": null,
           "required": true
         },
+
         {
           "id": "placeOfBirth",
           "description": "Place of Birth",
@@ -207,12 +213,12 @@
           "group": null,
           "required": true
         },
+
         {
           "id": "bloodType",
           "description": "Blood Type",
           "labelName": {
-            "eng": "Blood Type *",
-            "ara": "Blood Type"
+            "eng": "Blood Type"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -230,35 +236,12 @@
           "group": null,
           "required": true
         },
-        {
-          "id": "residenceStatus",
-          "description": "Filipino / Resident Alien",
-          "labelName": {
-            "eng": "Filipino / Resident Alien *",
-            "ara": "Filipino / Resident Alien"
-          },
-          "type": "simpleType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "dropdown",
-          "fieldType": "dynamic",
-          "format": null,
-          "fieldCategory": null,
-          "inputRequired": true,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "none",
-          "contactType": null,
-          "group": null,
-          "required": true
-        },
+
         {
           "id": "maritalStatus",
           "description": "Marital Status",
           "labelName": {
-            "eng": "Marital Status *",
-            "ara": "Marital Status"
+            "eng": "Marital Status"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -276,17 +259,17 @@
           "group": null,
           "required": false
         },
+
         {
-          "id": "permanentAddressLine",
-          "description": "Permanent Address of Registrant",
+          "id": "residenceStatus",
+          "description": "Filipino / Resident Alien",
           "labelName": {
-            "eng": "Permanent Address Line ",
-            "ara": "Permanent Address Line "
+            "eng": "Resident Type"
           },
           "type": "simpleType",
           "minimum": 0,
           "maximum": 0,
-          "controlType": "textbox",
+          "controlType": "dropdown",
           "fieldType": "dynamic",
           "format": null,
           "fieldCategory": null,
@@ -301,10 +284,33 @@
         },
 
         {
-          "id": "region",
+          "id": "permanentAddressLabel",
+          "description": "PERMANENT ADDRESS",
+          "labelName": {
+            "eng": "PERMANENT ADDRESS"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "labelName",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": "pvt",
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": null,
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
+        },
+
+        {
+          "id": "country",
           "description": "region",
           "labelName": {
-            "eng": "Region"
+            "eng": "Permanent Country"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -323,14 +329,44 @@
           ],
           "bioAttributes": null,
           "requiredOn": [],
-          "subType": "Region",
-          "contactType": "Postal",
-          "group": "Location",
+          "subType": "none",
+          "contactType": "null",
+          "group": "null",
           "required": true
         },
+
+        {
+          "id": "permanentAddressLine",
+          "description": "Permanent Address of Registrant",
+          "labelName": {
+            "eng": "Permanent Address"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [
+            {
+              "type": "regex",
+              "validator": "^[a-zA-Z0-9]*$",
+              "arguments": []
+            }
+          ],
+          "bioAttributes": null,
+          "requiredOn": [],
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
+        },
+
         {
           "id": "province",
-          "description": "province",
+          "description": "region",
           "labelName": {
             "eng": "Province"
           },
@@ -351,14 +387,15 @@
           ],
           "bioAttributes": null,
           "requiredOn": [],
-          "subType": "Province",
+          "subType": "",
           "contactType": "Postal",
-          "group": "Location",
-          "required": true
+          "group": "PermanentAddress",
+          "required": false
         },
+
         {
           "id": "city",
-          "description": "city",
+          "description": "region",
           "labelName": {
             "eng": "City"
           },
@@ -381,12 +418,13 @@
           "requiredOn": [],
           "subType": "City",
           "contactType": "Postal",
-          "group": "Location",
-          "required": true
+          "group": "PermanentAddress",
+          "required": false
         },
+
         {
           "id": "zone",
-          "description": "zone",
+          "description": "region",
           "labelName": {
             "eng": "Barangay"
           },
@@ -398,21 +436,28 @@
           "format": "none",
           "fieldCategory": "pvt",
           "inputRequired": true,
-          "validators": [],
+          "validators": [
+            {
+              "type": "regex",
+              "validator": "^(?=.{0,50}$).*",
+              "arguments": []
+            }
+          ],
           "bioAttributes": null,
           "requiredOn": [],
-          "subType": "Zone",
-          "contactType": null,
-          "group": "Location",
-          "required": true
+          "subType": "Barangay",
+          "contactType": "Postal",
+          "group": "PermanentAddress",
+          "required": false
         },
+
         {
-          "id": "postalCode",
-          "description": "postalCode",
+          "id": "postalcode",
+          "description": "region",
           "labelName": {
-            "eng": "Zip Code"
+            "eng": "Zip code"
           },
-          "type": "string",
+          "type": "simpleType",
           "minimum": 0,
           "maximum": 0,
           "controlType": "dropdown",
@@ -423,24 +468,102 @@
           "validators": [
             {
               "type": "regex",
-              "validator": "^[(?i)A-Z0-9]{5}$|^NA$",
+              "validator": "^(?=.{0,50}$).*",
               "arguments": []
             }
           ],
           "bioAttributes": null,
           "requiredOn": [],
-          "subType": "Postal Code",
+          "subType": "",
           "contactType": "Postal",
-          "group": "Location",
-          "required": true
+          "group": "PermanentAddress",
+          "required": false
+        },
+
+        {
+          "id": "permanentAddressLine1OC",
+          "description": "Address line 1",
+          "labelName": {
+            "eng": "Permanent Address Line 1"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": [
+            {
+              "engine": "MVEL",
+              "expr": "identity.country[0].value != 'Philippines'"
+            }
+          ],
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
+        },
+
+        {
+          "id": "permanentAddressLine2OC",
+          "description": "Address line 2",
+          "labelName": {
+            "eng": "Permanent Address Line 2"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": [
+            {
+              "engine": "MVEL",
+              "expr": "identity.country[0].value != 'Philippines'"
+            }
+          ],
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
+        },
+
+        {
+          "id": "permanentAddressLine3OC",
+          "description": "Address line 3",
+          "labelName": {
+            "eng": "Permanent Address Line 3"
+          },
+          "type": "simpleType",
+          "minimum": 0,
+          "maximum": 0,
+          "controlType": "textbox",
+          "fieldType": "dynamic",
+          "format": null,
+          "fieldCategory": null,
+          "inputRequired": true,
+          "validators": [],
+          "bioAttributes": null,
+          "requiredOn": [],
+          "subType": "none",
+          "contactType": null,
+          "group": null,
+          "required": false
         },
 
         {
           "id": "mobileno",
           "description": "Mobile Number",
           "labelName": {
-            "eng": "Mobile Number *",
-            "ara": "Mobile Number"
+            "eng": "Mobile Number"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -453,7 +576,7 @@
           "validators": [
             {
               "type": "regex",
-              "validator": "^[+]*([0-9]{1})([0-9]{9})$",
+              "validator": "^[+]*([0]{1})([0-9]{10})$",
               "arguments": []
             }
           ],
@@ -462,14 +585,13 @@
           "subType": "none",
           "contactType": null,
           "group": null,
-          "required": false
+          "required": true
         },
         {
           "id": "email",
           "description": "Email Address",
           "labelName": {
-            "eng": "Email Address *",
-            "ara": "Email Address"
+            "eng": "Email Address"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -497,8 +619,7 @@
           "id": "modeOfClaim",
           "description": "Mode of Claiming",
           "labelName": {
-            "eng": "Mode of Claiming",
-            "ara": "Mode of Claiming"
+            "eng": "Mode of Claiming"
           },
           "type": "simpleType",
           "minimum": 0,
@@ -515,148 +636,7 @@
           "contactType": null,
           "group": null,
           "required": true
-        },
-
-
-        {
-          "id": "proofOfAddress",
-          "description": "proofOfAddress",
-          "labelName": {
-            "eng": "Supporting Document One",
-            "ara": "Supporting Document One"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "optional",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POA",
-          "contactType": null,
-          "group": null,
-          "required": false
-        },
-        {
-          "id": "proofOfIdentity",
-          "description": "proofOfIdentity",
-          "labelName": {
-            "eng": "Supporting Document Category One",
-            "ara": "Supporting Document Category  One"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "evidence",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POI",
-          "contactType": null,
-          "group": null,
-          "required": false
-        },
-        {
-          "id": "proofOfRelationship",
-          "description": "proofOfRelationship",
-          "labelName": {
-            "eng": "Supporting Document Two",
-            "ara": "Supporting Document Two"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "evidence",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POR",
-          "contactType": null,
-          "group": null,
-          "required": false
-        },
-        {
-          "id": "proofOfDateOfBirth",
-          "description": "proofOfDateOfBirth",
-          "labelName": {
-            "eng": "Supporting Document Category TWO",
-            "ara": "Supporting Document Category Two"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "evidence",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POB",
-          "contactType": null,
-          "group": null,
-          "required": false
-        },
-        {
-          "id": "proofOfException",
-          "description": "documentOfException",
-          "labelName": {
-            "eng": "Document OF Exception",
-            "ara": "Document OF Exception"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "evidence",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POE",
-          "contactType": null,
-          "group": null,
-          "required": false
-        },
-        {
-          "id": "proofOfException-1",
-          "description": "documentException",
-          "labelName": {
-            "eng": "Document OF Exception",
-            "ara": "Document OF Exception"
-          },
-          "type": "documentType",
-          "minimum": 0,
-          "maximum": 0,
-          "controlType": "fileupload",
-          "fieldType": "default",
-          "format": "none",
-          "fieldCategory": "evidence",
-          "inputRequired": false,
-          "validators": [],
-          "bioAttributes": null,
-          "requiredOn": null,
-          "subType": "POE",
-          "contactType": null,
-          "group": null,
-          "required": false
         }
-
 
 
       ]

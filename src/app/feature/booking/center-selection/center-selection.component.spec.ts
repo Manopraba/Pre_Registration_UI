@@ -35,7 +35,7 @@ describe('CenterSelectionComponent', () => {
         latitude: '34.360207',
         longitude: '-6.550075',
         locationCode: '14053',
-        holidayLocationCode: 'KTA',
+        holidayLocationCode: 'KAL',
         contactPhone: '753476995',
         workingHours: '8:00:00',
         langCode: 'eng',

@@ -15,16 +15,17 @@ export class IdentityModel {
     public gender: AttributeModel[],
 
     public residenceStatus: AttributeModel[],
-
-
-    public region: AttributeModel[],
+    public country: AttributeModel[],
     public province: AttributeModel[],
     public city: AttributeModel[],
     public zone: AttributeModel[],
     public postalCode: AttributeModel[],
-    public phone: string,
+    public mobileno: string,
     public email: string,
     public referenceIdentityNumber: string,
-  public permanentAddressLine: string,
+    public permanentAddressLine:string,
+    public permanentAddressLine1OC: string,
+    public permanentAddressLine2OC: string,
+    public permanentAddressLine3OC: string,
   ) {}
 }

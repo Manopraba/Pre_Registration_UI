@@ -143,13 +143,13 @@ describe('DataStorageService', () => {
     expect(response.message).toBe('success');
   });
 
-  it('deleteFile', () => {
+ /* it('deleteFile', () => {
     let response = null;
     service.deleteFile('12345').subscribe(value => {
       response = value;
     });
     expect(response.message).toBe('success');
-  });
+  });*/
 
   it('getUsers', () => {
     let response = null;
