@@ -160,9 +160,10 @@ export class TimeSelectionComponent
     }
 
     private prepareNameList(userInfo, regCenterInfo) {
-        console.log("testing booking", this.userInfo.length);
+
+      //  alert("testing booking" +this.userInfo.length);
         userInfo.forEach((user) => {
-            console.log("testing user", user);
+
             const nameList: NameList = {
                 preRegId: "",
                 fullName: "",
@@ -176,14 +177,16 @@ export class TimeSelectionComponent
 
             nameList.preRegId = user.request.preRegistrationId;
             nameList.status = user.request.statusCode;
-            nameList.fullName =
-                user.request.demographicDetails.identity.fullName[0].value;
+           // alert("print names"+JSON.stringify(nameList.fullName));
+            nameList.fullName =user.request.demographicDetails.identity.fullName[0].value;
+                //user.request.demographicDetails.identity.fullName[0].value;
             //nameList.fullNameSecondaryLang =
-            // user.request.demographicDetails.identity.fullName[1].value;
+             //user.request.demographicDetails.identity.fullName[1].value;
             nameList.postalCode = user.request.demographicDetails.identity.postalcode;
             nameList.registrationCenter = regCenterInfo;
             this.names.push(nameList);
             this.temp.push(nameList);
+           // alert("print"+JSON.stringify(this.names));
         });
     }
 
@@ -243,10 +246,14 @@ export class TimeSelectionComponent
     addItem(index: number): void {
 
         if (
+
             this.canAddApplicant(
                 this.availabilityData[this.selectedTile].timeSlots[this.selectedCard]
             )
-        ) {
+        )
+        {
+
+
 
             this.availabilityData[this.selectedTile].timeSlots[
                 this.selectedCard
@@ -379,7 +386,7 @@ export class TimeSelectionComponent
                 this.availabilityData[this.selectedTile].showAfternoon)
         ) {
             this.activeTab = selection;
-            console.log(this.availabilityData[this.selectedTile]);
+            //console.log(this.availabilityData[this.selectedTile]);
             console.log(
                 this.availabilityData[this.selectedTile].timeSlots.filter(
                     (day) => day.tag === this.activeTab

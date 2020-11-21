@@ -86,7 +86,7 @@ export const ERROR_CODES = {
 export const CONFIG_KEYS = {
   mosip_notification_type: 'mosip.notificationtype',
   mosip_default_location: 'mosip.kernel.idobjectvalidator.masterdata.locations.locationNotAvailable',
-  mosip_country_code: 'mosip.country.code',
+  mosip_country_code: 'NCR',
   preregistration_nearby_centers: 'preregistration.nearby.centers',
   preregistration_timespan_rebook: 'preregistration.timespan.rebook',
   mosip_login_mode: 'mosip.login.mode',
@@ -100,7 +100,7 @@ export const CONFIG_KEYS = {
   preregistration_recommended_centers_locCode: 'preregistration.recommended.centers.locCode',
   preregistration_availability_noOfDays: 'preregistration.availability.noOfDays',
   mosip_regex_referenceIdentityNumber: 'mosip.id.validation.identity.referenceIdentityNumber',
-  mosip_regex_postalCode: 'mosip.id.validation.identity.postalCode',
+  mosip_regex_postalCode: 'mosip.id.validation.identity.postalcode',
   mosip_regex_DOB: 'mosip.id.validation.identity.dateOfBirth',
   mosip_default_dob_day: 'mosip.default.dob.day',
   mosip_default_dob_month: 'mosip.default.dob.month',
@@ -129,7 +129,7 @@ export const DASHBOARD_RESPONSE_KEYS = {
     preId: 'preRegistrationId',
     fullname: 'fullName',
     statusCode: 'statusCode',
-    postalCode: 'postalCode',
+    postalCode: 'postalcode',
     basicDetails: 'basicDetails',
     demographicMetadata: 'demographicMetadata'
   }
@@ -192,12 +192,13 @@ export const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug
 export const controlTypeGender = 'gender';
 export const controlTypeResidenceStatus = 'residenceStatus';
 
-export const previewFields = ['country', 'province', 'city', 'zone','gender', 'modeOfClaim','bloodType','maritalStatus'];
-
+//export const previewFields = ['country', 'province', 'city', 'zone','postalcode','gender','bloodType','maritalStatus'];
+//export const previewGenderResidenceStatus = ['gender','residenceStatus'];
+export const previewFields = ['maritalStatus','residenceStatus','country', 'province', 'city', 'zone','gender','bloodType'];
 export const TRANSLITERATE_FIELDS = [
-    "fullName", "middleName","lastName","suffix","sameAsPermanent","postalCode",
- , "permanentAddressLine1OC","permanentAddressLine2OC","permanentAddressLine3OC",
-  "permanentAddressLine","placeOfBirth","mobileno", "modeOfClaim",
+    "fullName", "middleName","lastName","suffix","placeOfBirth"
+ , "permanentAddressLine1OC",
+  "postalcode","mobileno", "email"
   ]
 /*export const TRANSLITERATE_FIELDS = [
     "fullName", "middleName","lastName","sameAsPermanent",

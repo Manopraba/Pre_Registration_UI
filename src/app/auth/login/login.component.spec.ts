@@ -29,7 +29,7 @@ describe('LoginComponent', () => {
     'mosip.regex.DOB': '^d{4}/([0]d|1[0-2])/([0-2]d|3[01])$',
     'mosip.regex.email': '^[w-+]+(.[w]+)*@[w-]+(.[w]+)*(.[a-z]{2,})$',
     'mosip.regex.phone': '^([6-9]{1})([0-9]{9})$',
-    'mosip.regex.postalCode': '^[(?i)A-Z0-9]{6}$',
+    'mosip.regex.postalcode': '^[(?i)A-Z0-9]{6}$',
     'mosip.regex.textField': '',
     'mosip.secondary-language': 'fra',
     'mosip.supported-languages': 'eng,ara,fra',

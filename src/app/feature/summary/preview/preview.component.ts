@@ -11,6 +11,7 @@ import * as appConstants from "../../../app.constants";
 import LanguageFactory from "src/assets/i18n";
 import { ConfigService } from "src/app/core/services/config.service";
 import { CodeValueModal } from "src/app/shared/models/demographic-model/code.value.modal";
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: "app-preview",
@@ -45,6 +46,7 @@ export class PreviewComponent implements OnInit {
   dynamicFields = [];
   primarydropDownFields = {};
   secondaryDropDownFields = {};
+  private loca: string;
   constructor(
       private dataStorageService: DataStorageService,
       private router: Router,
@@ -59,7 +61,7 @@ export class PreviewComponent implements OnInit {
 
   async ngOnInit() {
     this.primaryLanguage = localStorage.getItem("langCode");
-    this.secondaryLanguage = localStorage.getItem("secondaryLangCode");
+    this.secondaryLanguage = localStorage.getItem("langCode");
     this.activatedRoute.params.subscribe((param) => {
       this.preRegId = param["appId"];
     });
@@ -75,7 +77,7 @@ export class PreviewComponent implements OnInit {
     this.previewData.primaryAddress = this.combineAddress(0);
     //this.previewData.secondaryAddress = this.combineAddress(1);
     this.formatDob(this.previewData.dateOfBirth);
-    this.setFieldValues();
+  //  this.setFieldValues();
     this.getSecondaryLanguageLabels();
     this.files = this.user.files ? this.user.files : [];
     this.documentsMapping();
@@ -259,16 +261,22 @@ export class PreviewComponent implements OnInit {
   }
 
   setFieldValues() {
-    let fields = appConstants.previewFields;
-    fields.forEach((field) => {
-      this.previewData[field].forEach((element) => {
-        if(!(field === appConstants.controlTypeResidenceStatus || field === appConstants.controlTypeGender)){
 
+    let fields = appConstants.previewFields;
+
+    fields.forEach((field) => {
+
+      this.previewData[field].forEach((element) => {
+
+
+        if(!(field === appConstants.controlTypeResidenceStatus || field === appConstants.controlTypeGender)){
+         // alert("controlTypeResidenceStatus" +JSON.stringify(field));
           element.name = this.locCodeToName(element.value, element.language);
 
         }
         else if(field === appConstants.controlTypeResidenceStatus){
           this.residenceStatus.forEach(status => {
+           // alert("residenceStatus" +JSON.stringify(status));
             if(status.code === element.value && element.language === status.langCode){
               element.name = status.name;
             }
@@ -276,6 +284,7 @@ export class PreviewComponent implements OnInit {
         }
         else if(field === appConstants.controlTypeGender){
           this.genders.filter(gender => {
+          //  alert("genders" +JSON.stringify(gender));
             if(gender.code === element.value && element.language === gender.langCode){
               element.name = gender.genderName;
             }
@@ -314,12 +323,12 @@ export class PreviewComponent implements OnInit {
   combineAddress(index: number) {
     const address =
 
-        this.previewData.permanentAddressLine[index].value +
-        (this.previewData.permanentAddressLine[index].value
-            ? ", " + this.previewData.permanentAddressLine[index].value
+        this.previewData.permanentAddressLine1OC[index].value +
+        (this.previewData.permanentAddressLine1OC[index].value
+            ? ", " + this.previewData.permanentAddressLine1OC[index].value
             : "") +
-        (this.previewData.permanentAddressLine[index].value
-            ? ", " + this.previewData.permanentAddressLine[index].value
+        (this.previewData.permanentAddressLine1OC[index].value
+            ? ", " + this.previewData.permanentAddressLine1OC[index].value
             : "");
 
     return address;
@@ -385,12 +394,13 @@ export class PreviewComponent implements OnInit {
 
   private getLocations(langCode) {
     return new Promise((resolve) => {
-      const countryCode = this.configService.getConfigByKey(
-          appConstants.CONFIG_KEYS.mosip_country_code
-      );
-      alert("testing get location"+JSON.stringify(countryCode))
+      this.loca
+          =appConstants.CONFIG_KEYS.mosip_country_code
+
+      return  this.loca;
+   //   alert("testing get location"+JSON.stringify(countryCode))
       this.dataStorageService
-          .getLocationsHierarchyByLangCode(langCode, countryCode)
+          .getLocationsHierarchyByLangCode(langCode, this.loca)
           .subscribe((response) => {
             if (response[appConstants.RESPONSE]) {
               const locations = response[appConstants.RESPONSE].locations;
@@ -400,8 +410,10 @@ export class PreviewComponent implements OnInit {
     });
   }
   private getGenderDetails() {
+
     return new Promise((resolve) => {
       this.dataStorageService.getGenderDetails().subscribe((response) => {
+
         if (response[appConstants.RESPONSE]) {
           this.genders =
               response[appConstants.RESPONSE][
@@ -424,6 +436,7 @@ export class PreviewComponent implements OnInit {
   private getResidentDetails() {
     return new Promise((resolve) => {
       this.dataStorageService.getResidentDetails().subscribe((response) => {
+
         if (response[appConstants.RESPONSE]) {
           this.residenceStatus =
               response[appConstants.RESPONSE][

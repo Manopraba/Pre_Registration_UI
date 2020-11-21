@@ -35,11 +35,15 @@ export class DataStorageService {
 
     BASE_URL = this.appConfigService.getConfig()["BASE_URL"];
     PRE_REG_URL = this.appConfigService.getConfig()["PRE_REG_URL"];
+    private loca: any;
 
     getUsers(userId: string) {
+
         let url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.applicants;
-        return this.httpClient.get<Applicant[]>(url);
+
+
+        return this.httpClient.get(url);
     }
 
     /**
@@ -50,12 +54,14 @@ export class DataStorageService {
      * @memberof DataStorageService
      */
     getUser(preRegId: string) {
+
         let url =
             this.BASE_URL +
             this.PRE_REG_URL +
             appConstants.APPEND_URL.applicants +
             appConstants.APPENDER +
             preRegId;
+
         return this.httpClient.get(url);
     }
 
@@ -101,6 +107,7 @@ export class DataStorageService {
     }
 
     getUserDocuments(preRegId) {
+
         return this.httpClient.get(
             this.BASE_URL +
             this.PRE_REG_URL +
@@ -120,11 +127,11 @@ export class DataStorageService {
 
         const obj = new RequestModel(appConstants.IDS.newUser, identity);
 
-        console.log("print object"+JSON.stringify(obj));
+
 
         let url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.applicants;
-        console.log("print add url"+url);
+
         return this.httpClient.post(url, obj);
 
     }
@@ -200,6 +207,7 @@ export class DataStorageService {
     }
 
     getLocationTypeData() {
+
         return this.httpClient.get(
             this.BASE_URL +
             appConstants.APPEND_URL.master_data +
@@ -246,13 +254,13 @@ export class DataStorageService {
      * @return String
      * @memberof DataStorageService
      */
+
     getLocationMetadataHirearchy() {
-alert("testing log"+this.configService.getConfigByKey(
-            appConstants.CONFIG_KEYS.mosip_country_code
-        ));
-        return this.configService.getConfigByKey(
-            appConstants.CONFIG_KEYS.mosip_country_code
-        );
+        this.loca
+        =appConstants.CONFIG_KEYS.mosip_country_code
+
+        return  this.loca;
+
 
     }
 
@@ -273,8 +281,9 @@ alert("testing log"+this.configService.getConfigByKey(
             location +
             appConstants.APPENDER +
             lang;
-        alert("getLocationImmediateHierearchy"+url)
+        //console.log("testing "+url);
         return this.httpClient.get(url);
+
 
     }
 
@@ -354,6 +363,7 @@ alert("testing log"+this.configService.getConfigByKey(
         locationHierarchyCode: number,
         data: string[]
     ) {
+
         let url =
             this.BASE_URL +
             appConstants.APPEND_URL.master_data +
@@ -362,10 +372,17 @@ alert("testing log"+this.configService.getConfigByKey(
             "/" +
             locationHierarchyCode +
             "/names?";
+
+
         data.forEach((name) => {
             url += "name=" + name;
+
+
             if (data.indexOf(name) !== data.length - 1) {
+
                 url += "&";
+
+
             }
         });
         if (url.charAt(url.length - 1) === "&") {
@@ -499,7 +516,7 @@ alert("testing log"+this.configService.getConfigByKey(
     }
 
     verifyGCaptcha(captcha) {
-        console.log(captcha);
+
         const headers = new HttpHeaders({"Content-Type": "application/json"});
         const url =
             this.BASE_URL + this.PRE_REG_URL + appConstants.APPEND_URL.captcha;
@@ -542,7 +559,7 @@ alert("testing log"+this.configService.getConfigByKey(
        /*  const url =this.BASE_URL + this.PRE_REG_URL+ 'applications/config';*/
 
        const url = this.BASE_URL + appConstants.APPEND_URL.master_data + `dynamicfields?langCode=${langCode}`;
-        console.log(url);
+       // console.log(url);
 
 
         return this.httpClient.get(url);

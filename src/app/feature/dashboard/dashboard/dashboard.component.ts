@@ -131,20 +131,24 @@ export class DashBoardComponent implements OnInit, OnDestroy {
    * @memberof DashBoardComponent
    */
   getUsers() {
+
     const sub = this.dataStorageService.getUsers(this.loginId).subscribe(
       (applicants: any) => {
+
         this.loggerService.info('applicants in dashboard', applicants);
         if (
           applicants[appConstants.NESTED_ERROR] &&
           applicants[appConstants.NESTED_ERROR][0][appConstants.ERROR_CODE] ===
             appConstants.ERROR_CODES.noApplicantEnrolled
         ) {
+
           localStorage.setItem('newApplicant', 'true');
           this.onNewApplication();
           return;
         }
 
         if (applicants[appConstants.RESPONSE] && applicants[appConstants.RESPONSE] !== null) {
+
           localStorage.setItem('newApplicant', 'false');
 
           this.allApplicants =
@@ -155,15 +159,18 @@ export class DashBoardComponent implements OnInit, OnDestroy {
             applicants[appConstants.RESPONSE][appConstants.DASHBOARD_RESPONSE_KEYS.applicant.basicDetails].length;
             index++
           ) {
+
             localStorage.setItem('noOfApplicant',applicants[appConstants.RESPONSE][appConstants.DASHBOARD_RESPONSE_KEYS.applicant.basicDetails].length);
             const applicant = this.createApplicant(applicants, index);
             this.users.push(applicant);
           }
         } else {
+
           this.onError();
         }
       },
       error => {
+
         this.loggerService.error('dashboard', error);
         this.onError();
         this.isFetched = true;
@@ -285,6 +292,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
    * @memberof DashBoardComponent
    */
   onNewApplication() {
+
     localStorage.setItem('modifyUser','false');
     localStorage.setItem('newApplicant','true');
     if (this.loginId) {
@@ -561,7 +569,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
    * @memberof DashBoardComponent
    */
   onAcknowledgementView(user: Applicant) {
-    console.log(user);
+
     let url = '';
     url = Utils.getURL(this.router.url, `pre-registration/summary/${user.applicationID}/acknowledgement`,1);
     this.router.navigateByUrl(url);
@@ -653,7 +661,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.dataStorageService.getUser(prid).subscribe(response => {
       if(response[appConstants.RESPONSE]){
         userDetails = response[appConstants.RESPONSE].demographicDetails.identity;
-        console.log(userDetails);
+
         const notificationDto = new NotificationDtoModel(
           userDetails['fullName'][0].value,
           prid,
@@ -664,7 +672,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
           null,
           true
         );
-        console.log(notificationDto);
+
        const model = new RequestModel(appConstants.IDS.notification, notificationDto);
        let notificationRequest = new FormData();
        notificationRequest.append(appConstants.notificationDtoKeys.notificationDto, JSON.stringify(model).trim());

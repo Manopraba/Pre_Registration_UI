@@ -93,7 +93,7 @@ class MockService {
               time_slot_from: '09:30',
               time_slot_to: '09:45'
             },
-            postalCode: '212332'
+            postalcode: '212332'
           }
         ]
       }

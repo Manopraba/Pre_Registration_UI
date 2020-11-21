@@ -12,7 +12,6 @@ export class ConfigService {
   }
 
   public getConfigByKey(key: string) {
-
     return  {...JSON.parse(localStorage.getItem('config'))}[key];
   }
 

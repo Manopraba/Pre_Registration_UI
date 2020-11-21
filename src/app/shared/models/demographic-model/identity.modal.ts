@@ -10,7 +10,7 @@ import { AttributeModel } from './attribute.modal';
 export class IdentityModel {
   constructor(
     public IDSchemaVersion: number,
-    public fullName: AttributeModel[],
+    public fullName:AttributeModel[] ,
     public dateOfBirth: string,
     public gender: AttributeModel[],
 
@@ -19,13 +19,12 @@ export class IdentityModel {
     public province: AttributeModel[],
     public city: AttributeModel[],
     public zone: AttributeModel[],
-    public postalCode: AttributeModel[],
+    public postalcode: string,
     public mobileno: string,
     public email: string,
     public referenceIdentityNumber: string,
-    public permanentAddressLine:string,
+
     public permanentAddressLine1OC: string,
-    public permanentAddressLine2OC: string,
-    public permanentAddressLine3OC: string,
+
   ) {}
 }

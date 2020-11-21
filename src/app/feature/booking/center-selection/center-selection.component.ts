@@ -81,7 +81,7 @@ export class CenterSelectionComponent extends BookingDeactivateGuardService
         this.locationTypes = response[appConstants.RESPONSE]["locations"];
       });
     this.subscriptions.push(subs);
-    console.log(this.users);
+
     this.getRecommendedCenters();
     this.getErrorLabels();
   }
@@ -119,24 +119,39 @@ export class CenterSelectionComponent extends BookingDeactivateGuardService
   }
 
   getRecommendedCenters() {
-    console.log(this.users.length);
+
     let pincodes = [];
     this.users.forEach((user) => {
-      pincodes.push(user.request.demographicDetails.identity.postalCode);
-    });
+     // alert("code "+JSON.stringify(user.request.demographicDetails.identity.postalcode));
+      pincodes.push(user.request.demographicDetails.identity.postalcode);
+    });//
+
+
     this.REGISTRATION_CENTRES = [];
+
     const subs = this.dataService
-      .recommendedCenters(
+//by paramu
+      // .recommendedCenters(
+      //   this.primaryLang,
+      //   this.configService.getConfigByKey(
+      //     appConstants.CONFIG_KEYS.preregistration_recommended_centers_locCode
+      //   ),
+      //   pincodes
+      // )
+        .recommendedCenters(
         this.primaryLang,
-        this.configService.getConfigByKey(
-          appConstants.CONFIG_KEYS.preregistration_recommended_centers_locCode
-        ),
+        4,
         pincodes
       )
+
+
       .subscribe((response) => {
+
+
         if (response[appConstants.RESPONSE]) {
           this.displayResults(response["response"]);
         } else {
+         // alert("errror");
           this.displayMessageError(
             "Error",
             this.errorlabels.regCenterNotavailabe,
@@ -145,6 +160,7 @@ export class CenterSelectionComponent extends BookingDeactivateGuardService
         }
       });
     this.subscriptions.push(subs);
+
   }
 
   setSearchClick(flag: boolean) {

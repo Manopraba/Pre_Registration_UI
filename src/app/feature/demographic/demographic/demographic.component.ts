@@ -229,7 +229,7 @@ export class DemographicComponent
 
         this.initialization();
         await this.getIdentityJsonFormat();
-        this.config = this.configService.getConfig();
+          this.config = this.configService.getConfig();
         this.getPrimaryLabels();
         await this.getConsentMessage();
         this.validationMessage = appConstants.errorMessages;
@@ -350,9 +350,11 @@ export class DemographicComponent
                 alertMessageSecond: this.demographiclabels.consent.alertMessageSecond,
                 alertMessageThird: this.demographiclabels.consent.alertMessageThird,
             };
+
             this.dialog.open(DialougComponent, {
                 width: "550px",
                 data: data,
+
                 disableClose: true,
             });
         }
@@ -364,12 +366,11 @@ export class DemographicComponent
      *
      */
 
-    async getIdentityJsonFormat() {
+    async   getIdentityJsonFormat() {
         return new Promise((resolve, reject) => {
             this.dataStorageService.getIdentityJson().subscribe((response) => {
-
-
                 this.identityData = response["response"]["idSchema"]["identity"];
+
                 this.locationHeirarchy = [
                     ...response["response"]["idSchema"]["locationHierarchy"],
                 ];
@@ -512,18 +513,20 @@ export class DemographicComponent
      * @param controlObject is Identity Type Object
      *  ex: { id : 'region',controlType: 'dropdown' ...}
      */
+
     dropdownApiCall(controlObject: any) {
-
-
         if (this.locationHeirarchy.includes(controlObject.id)) {
             if (this.locationHeirarchy.indexOf(controlObject.id) !== 0) {
 
                 this.primarydropDownFields[controlObject.id] = [];
                 const location = this.locationHeirarchy.indexOf(controlObject.id);
-                const parentLocation = this.locationHeirarchy[location - 1];
+                console.log("testing location length"+location)
+                console.log("testing location "+ JSON.stringify(location));
+                const parentLocation = this.locationHeirarchy[location -1];
+                console.log("parentLocation"+parentLocation)
                 let locationCode = this.userForm.get(`${parentLocation}`).value;
-
-
+                console.log("locationCode"+locationCode)
+                //  console.log("print location"+JSON.parse(locationCode));
                 this.loadLocationData(locationCode, controlObject.id);
 
 
@@ -583,12 +586,14 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     private async setLocations() {
-        alert("inside first");
+
         await this.getLocationMetadataHirearchy();
         this.loadLocationData(
             this.uppermostLocationHierarchy,
             this.locationHeirarchy[0]
+
         );
+
     }
 
     /**
@@ -625,6 +630,7 @@ export class DemographicComponent
 
         if (fieldName && fieldName.length > 0) {
 
+
             this.dataStorageService
                 .getLocationImmediateHierearchy(this.primaryLang, locationCode)
 
@@ -634,13 +640,25 @@ export class DemographicComponent
                             response[appConstants.RESPONSE][
                                 appConstants.DEMOGRAPHIC_RESPONSE_KEYS.locations
                                 ].forEach((element) => {
-                                let codeValueModal: CodeValueModal = {
-                                    valueCode: element.code,
-                                    valueName: element.name,
-                                    languageCode: this.primaryLang,
-                                };
 
-                                this.primarydropDownFields[fieldName].push(codeValueModal);
+                                    if(fieldName=="postalcode"){
+                                        let codeValueModal: CodeValueModal = {
+                                            valueCode: element.name,
+                                            valueName: element.name,
+                                            languageCode: this.primaryLang,
+                                        };
+                                        this.primarydropDownFields[fieldName].push(codeValueModal);
+                                    }else{
+                                        let codeValueModal: CodeValueModal = {
+                                            valueCode: element.code,
+                                            valueName: element.name,
+                                            languageCode: this.primaryLang,
+                                        };
+                                        this.primarydropDownFields[fieldName].push(codeValueModal);
+                                    }
+
+
+
                             });
                         }
                     },
@@ -800,8 +818,7 @@ export class DemographicComponent
                 await this.getUserInfo(this.preRegId);
             }
             if (
-                this.user.request.demographicDetails.identity.fullName[0].language !==
-                this.primaryLang
+                this.user.request.demographicDetails.identity.fullName[0].language !== this.primaryLang
             ) {
                 index = 1;
                 secondaryIndex = 0;
@@ -847,9 +864,9 @@ export class DemographicComponent
 
                     if (this.locationHeirarchy.includes(control.id)) {
                         this.dropdownApiCall(control);
-                        alert("inaside the if")
+
                         if (control.id === "postalCode") {
-                            alert("inaside the if")
+
                             this.userForm.controls[`${control.id}`].setValue(
                                 this.user.request.demographicDetails.identity[`${control.id}`]
                             );
@@ -865,7 +882,7 @@ export class DemographicComponent
                                     .value
                             );
                             if (this.primaryLang !== "eng") {
-                                alert("this.primaryLang !== \"eng\"");
+
                                 this.transUserForm.controls[`${control.id}`].setValue(
                                     this.user.request.demographicDetails.identity[control.id][
                                         secondaryIndex
@@ -874,12 +891,22 @@ export class DemographicComponent
                             }
                         }
                     } else {
+
+                       /* textbox
+                        if(fieldName=="postalcode"){
+                            let codeValueModal: CodeValueModal = {
+                                valueCode: element.name,
+                                valueName: element.name,
+                                languageCode: this.primaryLang,
+                            };
+                            this.primarydropDownFields[fieldName].push(codeValueModal);
+                        }*/
                         this.userForm.controls[`${control.id}`].setValue(
                             this.user.request.demographicDetails.identity[control.id][index]
                                 .value
                         );
                         if (this.primaryLang !== "eng") {
-                            alert("this.primaryLang !== \"eng\"");
+
                             this.transUserForm.controls[`${control.id}`].setValue(
                                 this.user.request.demographicDetails.identity[control.id][
                                     secondaryIndex
@@ -1310,14 +1337,16 @@ export class DemographicComponent
             const request = this.createRequestJSON(identity);
             console.log("TESTING", request);
             const responseJSON = this.createResponseJSON(identity);
-          this.dataUploadComplete = false;
+            this.dataUploadComplete = false;
 
             if (this.dataModification) {
 
                 this.subscriptions.push(
 
                     this.dataStorageService.updateUser(request, this.preRegId).subscribe(
+
                         (response) => {
+                            console.log("update demographic"+JSON.stringify(response));
                             if (
                                 (response[appConstants.NESTED_ERROR] === null &&
                                     response[appConstants.RESPONSE] === null) ||
@@ -1348,6 +1377,7 @@ export class DemographicComponent
                     this.dataStorageService.addUser(request).subscribe(
                         (response) => {
 
+                            console.log("print demographic"+JSON.stringify(response));
 
                             if (
                                 (response[appConstants.NESTED_ERROR] === null &&
@@ -1371,7 +1401,6 @@ export class DemographicComponent
                                 return;
                             } else {
 
-
                                 this.preRegId =
                                     response[appConstants.RESPONSE].preRegistrationId;
                             }
@@ -1379,8 +1408,6 @@ export class DemographicComponent
                             this.onSubmission();
                         },
                         (error) => {
-
-
                             this.loggerService.error(error);
                             this.onError(this.errorlabels.error, error);
                         }
@@ -1492,8 +1519,15 @@ export class DemographicComponent
      * @memberof DemographicComponent
      */
     private createIdentityJSONDynamic() {
-        const identityObj = {IDSchemaVersion: ""};
-        const stringField = ["dateOfBirth", "postalCode", "email", "phone"];
+
+        const identityObj = {IDSchemaVersion: "1.0"};
+        const stringField = [
+            "dateOfBirth","country", "province", "city",
+            "zone","postalcode"];
+       /* const stringField = [ "middleName","lastName","suffix","sameAsPermanent",
+            , "permanentAddressLine1OC","permanentAddressLine2OC","permanentAddressLine3OC","residenceStatus",
+            "permanentAddressLine","placeOfBirth","mobileno", "modeOfClaim","dateOfBirth", "email","country", "province", "city",
+            "zone","postalcode","gender","bloodType","maritalStatus" ];*/
         this.identityData.forEach((field) => {
             if (
                 field.inputRequired === true &&

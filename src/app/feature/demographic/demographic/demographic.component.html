@@ -32,9 +32,6 @@
                                             matInput
                                             formControlName="{{ field.id }}"
 
-
-                                            (focusout)="copyToSecondaryFormNonDropDown(field.id, $event)"
-                                            (input)="copyToSecondaryFormNonDropDown(field.id, $event)"
                                             #keyboardRef
                                             #input
                                     />
@@ -88,7 +85,7 @@
                                         </mat-form-field>
                                         <mat-form-field>
                                             <input
-                                                    matInput onkeypress='validate(event)' maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                    matInput  maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
                                                     onDrag="return false" onDrop="return false" onPaste="return false"
                                                     placeholder="{{ 'demographic.date_mm' | translate }}"
                                                     [value]="month"
@@ -99,7 +96,7 @@
                                         <mat-form-field>
                                             <input
                                                     matInput
-                                                    onkeypress='validate(event)' maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
+                                                     maxlength="11" value="${cpCon.receiveNo}" required tabindex="34" onCopy="return false"
                                                     onDrag="return false" onDrop="return false" onPaste="return false"
                                                     placeholder="{{ 'demographic.date_yyyy' | translate }}"
                                                     [value]="year"
@@ -152,12 +149,7 @@
                                 <mat-select
                                         formControlName="{{ field.id }}"
                                         (focus)="dropdownApiCall(field)"
-                                        (selectionChange)="
-                    copyDataToSecondaryForm(
-                      field.id,
-                      userForm.get(field.id).value
-                    )
-                  "
+
                                         #dropdown
                                 >
                                     <mat-option

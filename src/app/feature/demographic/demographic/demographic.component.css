@@ -81,7 +81,7 @@ hr { background-color: #DE0F29; height: 1px; border: 0; }
   margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
-  margin-left: 2%;
+  margin-left: 4%;
   float: right;
 }
 .user__container h6 {

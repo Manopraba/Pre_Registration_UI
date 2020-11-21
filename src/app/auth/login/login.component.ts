@@ -140,7 +140,7 @@ export class LoginComponent implements OnInit {
     } else if (this.configService.getConfigByKey("enable-captcha") === "true") {
       this.enableCaptcha = true;
     }
-    console.log(this.enableCaptcha + typeof this.enableCaptcha);
+   // console.log(this.enableCaptcha + typeof this.enableCaptcha);
     if (!this.enableCaptcha) {
       this.enableSendOtp = true;
     }
@@ -326,7 +326,7 @@ export class LoginComponent implements OnInit {
         ((this.enableCaptcha && this.authService.isCaptchaAuthenticated()) ||
             this.enableSendOtp)
     ) {
-      console.log("test");
+
       this.inputOTP = "";
       this.showResend = true;
       this.showOTP = true;

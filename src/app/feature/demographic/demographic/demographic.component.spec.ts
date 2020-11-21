@@ -32,7 +32,7 @@ class MockService {
           province: [{ value: 'value', langugae: 'ara' }],
           city: [{ value: 'value', langugae: 'ara' }],
           zone: [{ value: 'value', langugae: 'ara' }],
-          postalCode: 'value',
+          postalcode: 'value',
           phone: 'value',
           email: 'value',
           referenceIdentityNumber: 'value'
